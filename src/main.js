@@ -6,7 +6,7 @@ import VueMask from 'v-mask'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueApexCharts from 'vue-apexcharts'
-import router from './router/index'
+import router from './router/routes'
 import store from '@/state/store'
 import vco from "v-click-outside"
 
@@ -39,16 +39,7 @@ const Toast = Swal.mixin({
 });
 window.Toast = Toast;
 
-const firebaseConfig = {
-  apiKey: process.env.VUE_APP_apiKey,
-  authDomain: process.env.VUE_APP_authDomain,
-  databaseURL: process.env.VUE_APP_databaseURL,
-  projectId: process.env.VUE_APP_projectId,
-  storageBucket: process.env.VUE_APP_storageBucket,
-  messagingSenderId: process.env.VUE_APP_messagingSenderId,
-  appId: process.env.VUE_APP_appId,
-  measurementId: process.env.VUE_APP_measurementId
-};
+
 
 // if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
 //   initFirebaseBackend(firebaseConfig);

@@ -3,7 +3,7 @@ class Token{
     isValid(token){
         const payload = this.payload(token)
         if (payload){
-            return payload.iss = "http://127.0.0.1:8001/api/auth/login" || "http://127.0.0.1:8001/api/auth/register" ? true : false
+            return payload.iss = !!("http://127.0.0.1:8001/api/auth/login" || "http://127.0.0.1:8001/api/auth/register")
             // return payload.iss = "http://127.0.0.1:8000/"
         }
         return false
@@ -19,5 +19,6 @@ class Token{
     }
 }
 
+// eslint-disable-next-line no-class-assign
 export default Token = new Token();
 

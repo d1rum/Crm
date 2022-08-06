@@ -19,13 +19,8 @@
             </div>
             <div class="card-body p-4">
               <div class="p-3">
-
-
-
                 <b-form
-
-                  class="form-horizontal mt-4"
-                >
+                  class="form-horizontal mt-4" @submit.prevent="login">
                   <b-form-group
                     id="input-group-1"
                     label="Email"
@@ -35,20 +30,11 @@
                   >
                     <b-form-input
                       id="input-1"
-                      :class="{ 'is-invalid': submitted && $v.email.$error }"
                       v-model="form.email"
                       type="email"
                       placeholder="Enter email"
                     ></b-form-input>
-                    <div
-                      v-if="submitted && $v.email.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.email.required">Email is required.</span>
-                      <span v-if="!$v.email.email"
-                        >Please enter valid email.</span
-                      >
-                    </div>
+
                   </b-form-group>
 
                   <b-form-group
@@ -63,10 +49,8 @@
                       v-model="form.password"
                       type="password"
                       placeholder="Enter password"
-                      :class="{ 'is-invalid': submitted && $v.password.$error }"
                     ></b-form-input>
                     <div
-                      v-if="submitted && !$v.password.required"
                       class="invalid-feedback"
                     >
                       Password is required.
@@ -132,7 +116,8 @@
 
 <script>
 import User from "../../../helpers/authservice/User";
-import axios from 'axios'
+import axios from "axios";
+// import axios from 'axios'
 
 export default {
   created(){
@@ -153,10 +138,12 @@ export default {
   },
   methods:{
     login(){
-      axios.post('/api/auth/login',this.form)
+      axios.post('http://127.0.0.1:8001/api/auth/login',this.form)
           .then(res => {
+            // eslint-disable-next-line no-console
             User.responseAfterLogin(res)
             this.$router.push({ name: 'home' })
+            // window.location.href = '/';
           })
           .catch(error => this.errors = error.response.data,
           )
