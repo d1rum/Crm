@@ -28,21 +28,21 @@ class User{
             return localStorage.getItem('user_name');
         }
     }
-    // userSurname(){
-    //     if(this.loggedIn()) {
-    //         return localStorage.getItem('user_surname');
-    //     }
-    // }
-    // userEmail(){
-    //     if(this.loggedIn()) {
-    //         return localStorage.getItem('user_email');
-    //     }
-    // }
-    // userPhone(){
-    //     if(this.loggedIn()) {
-    //         return localStorage.getItem('user_phone');
-    //     }
-    // }
+    userSurname(){
+        if(this.loggedIn()) {
+            return localStorage.getItem('user_surname');
+        }
+    }
+    userEmail(){
+        if(this.loggedIn()) {
+            return localStorage.getItem('user_email');
+        }
+    }
+    userPhone(){
+        if(this.loggedIn()) {
+            return localStorage.getItem('user_phone');
+        }
+    }
     userId(){
         if(this.loggedIn()) {
             return localStorage.getItem('user_id');

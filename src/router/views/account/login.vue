@@ -138,11 +138,11 @@ export default {
   },
   methods:{
     login(){
-      axios.post('http://127.0.0.1:8001/api/auth/login',this.form)
+      axios.post('http://127.0.0.1:8001/api/auth/admin/login',this.form)
           .then(res => {
             // eslint-disable-next-line no-console
             User.responseAfterLogin(res)
-            this.$router.push({ name: 'home' })
+            this.$router.push({ name: 'admin' })
             // window.location.href = '/';
           })
           .catch(error => this.errors = error.response.data,

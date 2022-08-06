@@ -29,24 +29,24 @@ class AppStorage{
         localStorage.removeItem('token')
         localStorage.removeItem('user_name')
     }
-    // getToken(){
-    //     localStorage.getItem(token);
-    // }
-    // getUserName(){
-    //     localStorage.getItem(user_name);
-    // }
-    // getUserSurname(){
-    //     localStorage.getItem(user_surname);
-    // }
-    // getUserId(){
-    //     localStorage.getItem(user_id);
-    // }
-    // getUserEmail(){
-    //     localStorage.getItem(user_email);
-    // }
-    // getUserPhone(){
-    //     localStorage.getItem(user_phone);
-    // }
+    getToken(){
+        localStorage.getItem('token');
+    }
+    getUserName(){
+        localStorage.getItem('user_name');
+    }
+    getUserSurname(){
+        localStorage.getItem('user_surname');
+    }
+    getUserId(){
+        localStorage.getItem('user_id');
+    }
+    getUserEmail(){
+        localStorage.getItem('user_email');
+    }
+    getUserPhone(){
+        localStorage.getItem('user_phone');
+    }
 }
 // eslint-disable-next-line no-class-assign
 export default AppStorage = new AppStorage();

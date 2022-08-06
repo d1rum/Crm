@@ -9,9 +9,8 @@
          icon: 'ti-home',
          badge: {
              variant: "primary",
-             text: "2"
          },
-         link: '/'
+         link: '/admin'
      },
      {
          id: 3,

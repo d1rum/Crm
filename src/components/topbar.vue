@@ -372,12 +372,12 @@ export default {
             Lock screen
           </b-dropdown-item>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item text-danger" href="/logout">
+          <router-link class="dropdown-item text-danger" to="/admin/logout">
             <i
               class="bx bx-power-off font-size-17 align-middle me-1 text-danger"
             ></i>
             Logout
-          </a>
+          </router-link>
         </b-dropdown>
 
         <div class="dropdown d-inline-block">

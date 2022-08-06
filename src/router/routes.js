@@ -2,72 +2,36 @@ import Vue from 'vue'
 import Router from "vue-router";
 
 
-//Auth
+// Auth
+import admin_login from './views/account/login';
+import admin_logout from './views/account/logout';
+// Home
+import admin from './views/home'
 
-import login from './views/account/login';
-
-import home from './views/home'
 Vue.use(Router)
 const routes = [
-    { path: '', redirect: { name: 'Login' }},
+    { path: '', redirect: { name: 'admin_login' }},
     {
-        path: '/home',
-        component: home,
-        name: 'home',
-        // children: [
-        //     {
-        //         path: 'default',
-        //         name: 'default',
-        //         component: SamplePage,
-        //         meta: {
-        //             title: 'Default Dashboard | Endless - Premium Admin Template',
-        //         }
-        //     },
-        //     {
-        //         path: 'ecommerce',
-        //         name: 'ecommerce',
-        //         component: SamplePage,
-        //         meta: {
-        //             title: 'Ecommerce Dashboard | Endless - Premium Admin Template',
-        //         }
-        //
-        //     },
-        //
-        // ]
+        path: '/admin',
+        component: admin,
+        name: 'admin',
     },
     //Aut route
     {
-        path: '/login',
-        name: 'login',
-        component: login,
+        path: '/admin/login',
+        name: 'admin-login',
+        component: admin_login,
         meta: {
-            title: ' login',
+            title: ' admin login',
         }
-        // path: '/auth',
-        // component: login,
-        // children: [
-        //     {
-        //         path: 'login',
-        //         name: 'Login',
-        //         component: Login,
-        //         meta: {
-        //             title: ' login | Cuba - Premium Admin Template',
-        //         }
-        //     },
-        //     {
-        //         path: 'register',
-        //         name: 'register',
-        //         component: Register,
-        //         meta: {
-        //             title: ' Register | Cuba - Premium Admin Template',
-        //         }
-        //     },
-        //     {
-        //         path: 'logout',
-        //         name: 'Logout',
-        //         component: Logout,
-        //     }
-        // ]
+    },
+    {
+        path: '/admin/logout',
+        name: 'admin-logout',
+        component: admin_logout,
+        meta: {
+            title: ' admin logout',
+        }
     },
 
 
