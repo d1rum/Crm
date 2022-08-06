@@ -57,6 +57,8 @@ Vue.use(VueSweetalert2)
 Vue.use(require('vue-chartist'))
 Vue.use(vco)
 Vue.use(Sparkline)
+window.Reload = new Vue();
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyDUFz_grdu36GXFm2dTi79oY9YHnqPr0Dk',

@@ -8,6 +8,9 @@ import admin_logout from './views/account/logout';
 // Home
 import admin from './views/home'
 
+//stock-transfer
+import stocktransfer from "../pages/StockTransfer/stocktransfer";
+
 Vue.use(Router)
 const routes = [
     { path: '', redirect: { name: 'admin_login' }},
@@ -29,6 +32,16 @@ const routes = [
         path: '/admin/logout',
         name: 'admin-logout',
         component: admin_logout,
+        meta: {
+            title: ' admin logout',
+        }
+    },
+    //stock-transfer
+
+    {
+        path: '/admin/stock-transfer',
+        name: 'admin-stock-transfer',
+        component: stocktransfer,
         meta: {
             title: ' admin logout',
         }
