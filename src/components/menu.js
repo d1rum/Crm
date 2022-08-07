@@ -126,13 +126,13 @@ const menuItems = [{
                         id: 20,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-collection'
                     },
                     {
                         id: 21,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/collection-list'
                     },
 
                 ]

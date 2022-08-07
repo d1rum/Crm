@@ -11,11 +11,14 @@ import admin from './views/home'
 //stock-transfer
 import stocktransfer from "../pages/StockTransfer/stocktransfer";
 
-//Slider
+// Slider
 import CreateSlider from "../pages/slider/create";
 import SliderList from "../pages/slider/index";
 import EditSlider from "../pages/slider/edit";
-
+// Collection
+import CreateCollection from "../pages/collection/create";
+import CollectionList from "../pages/collection/index";
+import EditCollection from "../pages/collection/edit";
 
 Vue.use(Router)
 const routes = [
@@ -76,6 +79,31 @@ const routes = [
         component: EditSlider,
         meta: {
             title: ' admin edit slider',
+        }
+    },
+    //Collection
+    {
+        path: '/admin/create-collection',
+        name: 'admin-create-collection',
+        component: CreateCollection,
+        meta: {
+            title: ' admin create collection',
+        }
+    },
+    {
+        path: '/admin/collection-list',
+        name: 'admin-collection-list',
+        component: CollectionList,
+        meta: {
+            title: ' admin collection list',
+        }
+    },
+    {
+        path: '/admin/edit-collection/:id',
+        name: 'admin-edit-collection',
+        component: EditCollection,
+        meta: {
+            title: ' admin edit collection',
         }
     },
 

@@ -104,7 +104,6 @@ export default {
   },
   data(){
     return{
-      sliderPhotoUrl: null,
       sliders:[],
       searchTerm:'',
       tablefields: [
@@ -178,8 +177,8 @@ export default {
         if (result.value) {
           axios.delete('http://192.168.43.184:8001/api/slider/'+id)
               .then(() => {
-                this.sliders = this.sliders.filter(slider => {
-                  return slider.id !== id
+                this.items = this.items.filter(item => {
+                  return item.id !== id
                 })
               })
               .catch(() => {
