@@ -30,11 +30,10 @@
               </div>
               <br>
               <div class="form-row">
-                <div class="custom-file">
-                  <label for="customFile">Slider Image</label>
-                  <br>
-                  <input type="file" @change="onFileSelected" class="custom-file-input" id="customFile">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+                <label>Slider Image</label>
+                <div class="col-md-8 input-group">
+                  <input type="file" @change="onFileSelected" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
                 <br><br>
                 <div class="form-group col-md-2">
@@ -65,7 +64,7 @@ export default {
     ckeditor: CKEditor.component,
     Layout,
   },
-  name:'admin-slider-create',
+  name:'admin-edit-slider',
   created(){
     // eslint-disable-next-line no-undef
     if(!User.loggedIn()){
@@ -74,7 +73,7 @@ export default {
     let id = this.$route.params.id
     // eslint-disable-next-line no-console
     console.log(id);
-    axios.get('http://192.168.43.184:8001/api/slider/'+id)
+    axios.get('http://192.168.1.100:8001/api/admin/slider/'+id)
         .then(({data}) => (this.form = data))
         // eslint-disable-next-line no-console
         .catch()
@@ -112,7 +111,7 @@ export default {
     },
     sliderUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.43.184:8001/api/slider/'+id,this.form)
+      axios.patch('http://192.168.1.100:8001/api/admin/slider/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-slider-list'})
             Notification.success()

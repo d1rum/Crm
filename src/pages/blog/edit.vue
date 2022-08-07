@@ -5,46 +5,39 @@
       <div class="col-xl-12">
         <div class="card card-statistics">
           <div class="card-body">
-            <form @submit.prevent="collectionUpdate" enctype="multipart/form-data">
+            <form @submit.prevent="blogUpdate" enctype="multipart/form-data">
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="collectionTitle">Collection Title</label>
-                  <input type="text" v-model="form.collection_title" class="form-control" id="collectionTitle">
+                <div class="form-group col-md-4">
+                  <label for="blogTitle">Blog Title</label>
+                  <input type="text" v-model="form.blog_title" class="form-control" id="blogTitle">
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="collectionCode">Collection Code</label>
-                  <input type="text" v-model="form.collection_code" class="form-control" id="collectionCode">
+                <div class="form-group col-md-4">
+                  <label for="blogSeq">Blog Seq Number</label>
+                  <input type="number" min="1" v-model="form.blog_seq" class="form-control" id="blogSeq">
                 </div>
-              </div>
-              <br>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="collectionSeq">Collection Seq Number</label>
-                  <input type="number" min="1" v-model="form.collection_seq" class="form-control" id="collectionSeq">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="collectionStatus">Collection Status</label>
-                  <select id="collectionStatus" class="form-control" v-model="form.collection_status">
-                    <option :value="1">Active</option>
-                    <option :value="0">Passive</option>
+                <div class="form-group col-md-4">
+                  <label for="blogStatus">Blog Status</label>
+                  <select id="blogStatus" class="form-control" v-model="form.blog_status">
+                    <option :key="1" :value="1">Active</option>
+                    <option :key="0" :value="0">Passive</option>
                   </select>
                 </div>
               </div>
               <br>
               <div class="form-group">
-                <label for="collectionDescription">Collection Description</label>
-                <ckeditor :editor="editor" v-model="form.collection_description" class="form-control" id="collectionDescription"></ckeditor>
+                <label for="blogDescription">Blog Description</label>
+                <ckeditor :editor="editor" v-model="form.blog_description" class="form-control" id="blogDescription"></ckeditor>
               </div>
               <br>
               <div class="form-row">
-                <label>Collection Image</label>
+                <label>Blog Image</label>
                 <div class="col-md-8 input-group">
                   <input type="file" @change="onFileSelected" class="form-control" id="inputGroupFile02">
                   <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
                 <br><br>
                 <div class="form-group col-md-2">
-                  <img :src="form.collection_image" id="collection_image">
+                  <img :src="form.blog_image" id="blog_image">
                 </div>
               </div>
               <br>
@@ -71,14 +64,14 @@ export default {
     ckeditor: CKEditor.component,
     Layout,
   },
-  name:'admin-edit-collection',
+  name:'admin-edit-blog',
   created(){
     // eslint-disable-next-line no-undef
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.100:8001/api/admin/collection/'+id)
+    axios.get('http://192.168.1.100:8001/api/admin/blog/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -86,16 +79,15 @@ export default {
   data(){
     return {
       form:{
-        collection_code: '',
-        collection_title: '',
-        collection_seq: '',
-        collection_status: '',
-        collection_description: '',
-        collection_image: '',
+        blog_title: '',
+        blog_seq: '',
+        blog_status: '',
+        blog_description: '',
+        blog_image: '',
         new_blog_image: '',
       },
       errors:{},
-      sliders:{},
+      blogs:{},
       editor: ClassicEditor,
     }
   },
@@ -108,27 +100,27 @@ export default {
       } else {
         let reader = new FileReader();
         reader.onload = event => {
-          this.form.new_collection_image = event.target.result
+          this.form.new_blog_image = event.target.result
           // eslint-disable-next-line no-console
           // console.log(event.target.result);
         };
         reader.readAsDataURL(file);
       }
     },
-    collectionUpdate(){
+    blogUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.100:8001/api/admin/collection/'+id,this.form)
+      axios.patch('http://192.168.1.100:8001/api/admin/blog/'+id,this.form)
           .then(() => {
-            this.$router.push({ name: 'admin-collection-list'})
+            this.$router.push({ name: 'admin-blog-list'})
             Notification.success()
           })
           .catch(error => this.errors = error.response.data.errors)
-    },
+    }
   }
 }
 </script>
 <style scoped>
-#collection_image{
+#blog_image{
   width: 50px;
   height: 50px;
 }

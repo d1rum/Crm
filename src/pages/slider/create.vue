@@ -30,11 +30,10 @@
             </div>
             <br>
             <div class="form-row">
-              <div class="custom-file">
-                <label for="customFile">Slider Image</label>
-                <br>
-                <input type="file" @change="onFileSelected" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+              <label>Slider Image</label>
+              <div class="col-md-8 input-group">
+                <input type="file" @change="onFileSelected" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div>
               <br><br>
               <div class="form-group col-md-2">
@@ -65,13 +64,13 @@ export default {
     ckeditor: CKEditor.component,
     Layout,
   },
-  name:'admin-slider-create',
+  name:'admin-create-slider',
   created(){
     // eslint-disable-next-line no-undef
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.43.184:8001/api/slider/')
+    axios.get('http://192.168.1.100:8001/api/admin/slider/')
         .then(({data}) => (this.sliders = data))
   },
 
@@ -106,7 +105,7 @@ export default {
       }
     },
     sliderInsert(){
-      axios.post('http://192.168.43.184:8001/api/slider',this.form)
+      axios.post('http://192.168.1.100:8001/api/admin/slider',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-slider-list'})
             Notification.success()

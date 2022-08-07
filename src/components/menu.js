@@ -58,6 +58,26 @@ const menuItems = [{
 
         subItems: [
             {
+                id: 1011,
+                label: 'Customer',
+                icon: 'ti-package',
+                subItems: [
+                    {
+                        id: 1111,
+                        label: 'Create',
+                        icon: 'ti-home',
+                        link: '/admin/create-customer'
+                    },
+                    {
+                        id: 1211,
+                        label: 'List',
+                        icon: 'ti-home',
+                        link: '/admin/customer-list'
+                    },
+
+                ]
+            },
+            {
                 id: 10,
                 label: 'Slider',
                 icon: 'ti-package',
@@ -146,13 +166,13 @@ const menuItems = [{
                         id: 23,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-product'
                     },
                     {
                         id: 24,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/product-list'
                     },
 
                 ]
@@ -186,13 +206,13 @@ const menuItems = [{
                         id: 29,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-blog'
                     },
                     {
                         id: 30,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/blog-list'
                     },
 
                 ]
@@ -226,13 +246,13 @@ const menuItems = [{
                         id: 35,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-faq'
                     },
                     {
                         id: 36,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/faq-list'
                     },
 
                 ]
@@ -266,13 +286,13 @@ const menuItems = [{
                         id: 41,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-team'
                     },
                     {
                         id: 42,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/team-list'
                     },
 
                 ]
@@ -318,12 +338,25 @@ const menuItems = [{
                 ]
             },
             {
-                id: 132,
+                id: 461,
                 label: 'Campaing',
-                icon: 'ti-home',
-                link: ''
-            },
+                icon: 'ti-package',
+                subItems: [
+                    {
+                        id: 471,
+                        label: 'Create',
+                        icon: 'ti-home',
+                        link: ''
+                    },
+                    {
+                        id: 481,
+                        label: 'List',
+                        icon: 'ti-home',
+                        link: ''
+                    },
 
+                ]
+            },
             {
                 id: 49,
                 label: 'Contact',
@@ -455,7 +488,7 @@ const menuItems = [{
             },
             {
                 id: 12312,
-                label: 'Where House',
+                label: 'Warehouse',
                 icon: 'ti-package',
                 subItems: [
                     {
@@ -482,13 +515,13 @@ const menuItems = [{
                         id: 3242,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/Admin/create'
                     },
                     {
                         id: 2343242,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/Admin/list'
                     },
 
                 ]
@@ -534,16 +567,16 @@ const menuItems = [{
                 ]
             },
             {
-                id: 456456464,
-                label: 'Image Resize',
-                icon: 'ti-package',
-                link: '',
-            },
-            {
                 id: 2132131,
                 label: 'Settings',
                 icon: 'ti-package',
                 subItems: [
+                    {
+                        id: 345435351312,
+                        label: 'Image Resize',
+                        icon: 'ti-home',
+                        link: ''
+                    },
                     {
                         id: 3353453,
                         label: 'Web Site',

@@ -39,10 +39,10 @@
 
                   >
                     <template v-slot:cell(description)="{item}">
-                      {{ item.collection_description.substring(0,30) }}
+                      {{ item.faq_description.substring(0,30) }}
                     </template>
                     <template v-slot:cell(status)="{item}">
-                      <div v-if="item.collection_status === 1">
+                      <div v-if="item.faq_status === 1">
                         <b-badge class="btn btn-success">Active</b-badge>
                       </div>
                       <div v-else>
@@ -50,13 +50,10 @@
                       </div>
                     </template>
                     <template v-slot:cell(actions)="{item}">
-                      <router-link :to="{ name: 'admin-edit-collection',params:{id:item.id}}" class="btn btn-sm btn-dark">Edit</router-link>
-                      <a @click="deleteCollection(item.id)" style="color: white;" class="btn btn-sm btn-danger">Delete</a>
+                      <router-link :to="{ name: 'admin-edit-faq',params:{id:item.id}}" class="btn btn-sm btn-dark">Edit</router-link>
+                      <a @click="deleteFaq(item.id)" style="color: white;" class="btn btn-sm btn-danger">Delete</a>
                     </template>
 
-                    <template v-slot:cell(collectionImage)="{item}">
-                      <img :src="'http://192.168.1.100:8001/'+item.collection_image" id="collection_photo">
-                    </template>
 
                   </b-table>
                 </div>
@@ -96,20 +93,18 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    this.allCollection();
+    this.allFaq();
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
-      this.allCollection()
+      this.allFaq()
     })
   },
   data(){
     return{
-      collections:[],
+      faqs:[],
       searchTerm:'',
       tablefields: [
-        { key: 'collectionImage', label: 'Image', sortable: true, },
-        { key: 'collection_title', label: 'Title', sortable: true, },
-        { key: 'collection_code', label: 'Code', sortable: true, },
+        { key: 'faq_title', label: 'Title', sortable: true, },
         { key: 'description', label: 'Descriotion', sortable: true, },
         { key: 'status', label: 'Status', sortable: true, },
         { key: 'actions', label: 'Actions', sortable: true, },
@@ -141,8 +136,8 @@ export default {
       return this.items.length;
     },
     filtersearch(){
-      return this.collections.filter(collection => {
-        return collection.collection_title.match(this.searchTerm)
+      return this.faqs.filter(faq => {
+        return faq.faq_title.match(this.searchTerm)
 
       })
     }
@@ -151,7 +146,7 @@ export default {
     // Set the initial number of items
     this.totalRows = this.items.length;
 
-    this.allCollection();
+    this.allFaq();
   },
   methods:{
     onFiltered(filteredItems) {
@@ -159,12 +154,12 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    allCollection(){
-      axios.get('http://192.168.1.100:8001/api/admin/collection')
+    allFaq(){
+      axios.get('http://192.168.1.100:8001/api/admin/faq')
           .then(({data}) => (this.items = data))
           .catch()
     },
-    deleteCollection(id){
+    deleteFaq(id){
       // eslint-disable-next-line no-undef
       Swal.fire({
         title: 'Are you sure?',
@@ -176,14 +171,14 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.100:8001/api/admin/collection/'+id)
+          axios.delete('http://192.168.1.100:8001/api/admin/faq/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id
                 })
               })
               .catch(() => {
-                this.$router.push({name: 'admin-collection-list'})
+                this.$router.push({name: 'admin-faq-list'})
               })
           // eslint-disable-next-line no-undef
           Swal.fire(
@@ -202,8 +197,4 @@ export default {
 </script>
 
 <style scoped>
-#collection_photo{
-  height: 40px;
-  width: 40px;
-}
 </style>

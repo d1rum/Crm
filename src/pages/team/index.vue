@@ -38,24 +38,13 @@
                       @filtered="onFiltered"
 
                   >
-                    <template v-slot:cell(description)="{item}">
-                      {{ item.collection_description.substring(0,30) }}
-                    </template>
-                    <template v-slot:cell(status)="{item}">
-                      <div v-if="item.collection_status === 1">
-                        <b-badge class="btn btn-success">Active</b-badge>
-                      </div>
-                      <div v-else>
-                        <b-badge class="btn btn-danger">Passive</b-badge>
-                      </div>
-                    </template>
                     <template v-slot:cell(actions)="{item}">
-                      <router-link :to="{ name: 'admin-edit-collection',params:{id:item.id}}" class="btn btn-sm btn-dark">Edit</router-link>
-                      <a @click="deleteCollection(item.id)" style="color: white;" class="btn btn-sm btn-danger">Delete</a>
+                      <router-link :to="{ name: 'admin-edit-team',params:{id:item.id}}" class="btn btn-sm btn-dark">Edit</router-link>
+                      <a @click="deleteTeam(item.id)" style="color: white;" class="btn btn-sm btn-danger">Delete</a>
                     </template>
 
-                    <template v-slot:cell(collectionImage)="{item}">
-                      <img :src="'http://192.168.1.100:8001/'+item.collection_image" id="collection_photo">
+                    <template v-slot:cell(teamImage)="{item}">
+                      <img :src="'http://192.168.1.100:8001/'+item.team_image" id="team_photo">
                     </template>
 
                   </b-table>
@@ -96,22 +85,23 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    this.allCollection();
+    this.allTeam();
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
-      this.allCollection()
+      this.allTeam()
     })
   },
   data(){
     return{
-      collections:[],
+      teams:[],
       searchTerm:'',
       tablefields: [
-        { key: 'collectionImage', label: 'Image', sortable: true, },
-        { key: 'collection_title', label: 'Title', sortable: true, },
-        { key: 'collection_code', label: 'Code', sortable: true, },
-        { key: 'description', label: 'Descriotion', sortable: true, },
-        { key: 'status', label: 'Status', sortable: true, },
+        { key: 'teamImage', label: 'Image', sortable: true, },
+        { key: 'team_name', label: 'Name', sortable: true, },
+        { key: 'team_surname', label: 'Surname', sortable: true, },
+        { key: 'team_job', label: 'Job', sortable: true, },
+        { key: 'team_email', label: 'Email', sortable: true, },
+        { key: 'team_phone', label: 'Phone', sortable: true, },
         { key: 'actions', label: 'Actions', sortable: true, },
 
 
@@ -141,8 +131,8 @@ export default {
       return this.items.length;
     },
     filtersearch(){
-      return this.collections.filter(collection => {
-        return collection.collection_title.match(this.searchTerm)
+      return this.teams.filter(team => {
+        return team.team_job.match(this.searchTerm)
 
       })
     }
@@ -151,7 +141,7 @@ export default {
     // Set the initial number of items
     this.totalRows = this.items.length;
 
-    this.allCollection();
+    this.allTeam();
   },
   methods:{
     onFiltered(filteredItems) {
@@ -159,12 +149,12 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    allCollection(){
-      axios.get('http://192.168.1.100:8001/api/admin/collection')
+    allTeam(){
+      axios.get('http://192.168.1.100:8001/api/admin/team')
           .then(({data}) => (this.items = data))
           .catch()
     },
-    deleteCollection(id){
+    deleteTeam(id){
       // eslint-disable-next-line no-undef
       Swal.fire({
         title: 'Are you sure?',
@@ -176,14 +166,14 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.100:8001/api/admin/collection/'+id)
+          axios.delete('http://192.168.1.100:8001/api/admin/team/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id
                 })
               })
               .catch(() => {
-                this.$router.push({name: 'admin-collection-list'})
+                this.$router.push({name: 'admin-team-list'})
               })
           // eslint-disable-next-line no-undef
           Swal.fire(
@@ -202,7 +192,7 @@ export default {
 </script>
 
 <style scoped>
-#collection_photo{
+#team_photo{
   height: 40px;
   width: 40px;
 }
