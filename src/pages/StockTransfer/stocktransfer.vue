@@ -215,6 +215,7 @@ var rad = function(x) {
   return x * Math.PI / 180;
 };
 export default {
+  name:'admin-stock-transfer',
   components: { ckeditor: CKEditor.component, Layout },
   created(){
     // eslint-disable-next-line no-undef

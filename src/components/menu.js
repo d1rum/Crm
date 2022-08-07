@@ -27,7 +27,7 @@
                  id: 5,
                  label: 'Stock Transfer',
                  icon: 'ti-home',
-                 link: ''
+                 link: '/admin/stock-transfer'
              },
              {
                  id: 6,
@@ -66,13 +66,13 @@
                          id: 11,
                          label: 'Create',
                          icon: 'ti-home',
-                         link: ''
+                         link: '/admin/create-slider'
                      },
                      {
                          id: 12,
                          label: 'List',
                          icon: 'ti-home',
-                         link: ''
+                         link: '/admin/slider-list'
                      },
 
                  ]

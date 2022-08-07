@@ -11,6 +11,11 @@ import admin from './views/home'
 //stock-transfer
 import stocktransfer from "../pages/StockTransfer/stocktransfer";
 
+//Slider
+import CreateSlider from "../pages/slider/create";
+import SliderList from "../pages/slider/index";
+
+
 Vue.use(Router)
 const routes = [
     { path: '', redirect: { name: 'admin_login' }},
@@ -18,6 +23,7 @@ const routes = [
         path: '/admin',
         component: admin,
         name: 'admin',
+
     },
     //Aut route
     {
@@ -42,6 +48,24 @@ const routes = [
         path: '/admin/stock-transfer',
         name: 'admin-stock-transfer',
         component: stocktransfer,
+        meta: {
+            title: ' admin logout',
+        }
+    },
+
+    //Slider
+    {
+        path: '/admin/create-slider',
+        name: 'admin-create-slider',
+        component: CreateSlider,
+        meta: {
+            title: ' admin logout',
+        }
+    },
+    {
+        path: '/admin/slider-list',
+        name: 'admin-slider-list',
+        component: SliderList,
         meta: {
             title: ' admin logout',
         }
