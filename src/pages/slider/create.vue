@@ -1,48 +1,38 @@
 <template>
 <Layout>
   <div>
-    <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
-      <div class="breadcrumb-title pe-3"><router-link to="/slider">Slider</router-link></div>
-      <div class="ps-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0 p-0">
-            <li class="breadcrumb-item"><router-link to="/home"><i class='bx bx-home-alt'></i></router-link>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">New Slider</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-    <!--end breadcrumb-->
+
     <div class="col-xl-12">
       <div class="card card-statistics">
         <div class="card-body">
           <form @submit.prevent="sliderInsert" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="inputEmail4">Slider Title</label>
-                <input type="text" v-model="form.slider_title" class="form-control" id="inputEmail4" placeholder="Slider Title">
+                <label for="sliderTitle">Slider Title</label>
+                <input type="text" v-model="form.slider_title" class="form-control" id="sliderTitle">
               </div>
               <div class="form-group col-md-4">
-                <label for="inputEmail43">Slider Seq Number</label>
-                <input type="number" min="1" v-model="form.slider_seq" class="form-control" id="inputEmail43">
+                <label for="sliderSeq">Slider Seq Number</label>
+                <input type="number" min="1" v-model="form.slider_seq" class="form-control" id="sliderSeq">
               </div>
               <div class="form-group col-md-4">
-                <label for="inputState">Slider Status</label>
-                <select id="inputState" class="form-control" v-model="form.slider_status">
+                <label for="sliderStatus">Slider Status</label>
+                <select id="sliderStatus" class="form-control" v-model="form.slider_status">
                   <option :value="1">Active</option>
                   <option :value="0">Passive</option>
                 </select>
               </div>
             </div>
+            <br>
             <div class="form-group">
-              <label for="inputAddress">Slider Description</label>
-              <textarea id="inputAddress" class="form-control" v-model="form.slider_description" rows="3"></textarea>
+              <label for="sliderDescription">Slider Description</label>
+              <ckeditor :editor="editor" v-model="form.slider_description" class="form-control" id="sliderDescription"></ckeditor>
             </div>
+            <br>
             <div class="form-row">
-              <label>Slider Image</label>
               <div class="custom-file">
+                <label for="customFile">Slider Image</label>
+                <br>
                 <input type="file" @change="onFileSelected" class="custom-file-input" id="customFile">
                 <label class="custom-file-label" for="customFile">Choose file</label>
               </div>
@@ -51,7 +41,8 @@
                 <img :src="form.slider_image" style="height: 50px; width: 50px;">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <br>
+            <button type="submit" class="btn btn-primary col-xl-12">Save</button>
           </form>
         </div>
       </div>
@@ -65,19 +56,22 @@
 
 import axios from "axios";
 import Layout from "../../router/layouts/main.vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
   components:{
     // eslint-disable-next-line vue/no-unused-components
+    ckeditor: CKEditor.component,
     Layout,
   },
   name:'admin-slider-create',
   created(){
     // eslint-disable-next-line no-undef
     if(!User.loggedIn()){
-      this.$router.push({name: '/admin/login'})
+      this.$router.push({name: 'admin-login'})
     }
-    axios.get('/api/slider/')
+    axios.get('http://192.168.43.184:8001/api/slider/')
         .then(({data}) => (this.sliders = data))
   },
 
@@ -92,6 +86,7 @@ export default {
       },
       errors:{},
       sliders:{},
+      editor: ClassicEditor,
     }
   },
 
@@ -111,9 +106,9 @@ export default {
       }
     },
     sliderInsert(){
-      axios.post('/api/slider',this.form)
+      axios.post('http://192.168.43.184:8001/api/slider',this.form)
           .then(() => {
-            this.$router.push({ name: 'slider'})
+            this.$router.push({ name: 'admin-slider-list'})
             Notification.success()
           })
           .catch(error => this.errors = error.response.data.errors)

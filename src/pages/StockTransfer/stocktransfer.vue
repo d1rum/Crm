@@ -144,7 +144,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-6"  v-for="warehouseItem in filtersearch" :key="warehouseItem.id">
                           <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItem.id)">
                             <div class="card" style="width:135px; margin-bottom:5px;">
-                              <img :src="'http://127.0.0.1:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
+                              <img :src="'http://192.168.43.184:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
                               <div class="card-body">
                                 <h5 class="card-title">{{ warehouseItem.product_name }}</h5>
                                 <h5 class="card-title">Code: {{ warehouseItem.product_code }}</h5>
@@ -174,7 +174,7 @@
                        <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="width:135px;" v-for="warehouseItemVariant in filtervariantsearch" :key="warehouseItemVariant.id">
                          <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItemVariant.product_id,warehouseItemVariant.vid)">
                            <div class="card" style="width:135px; margin-bottom:5px;">
-                             <img :src="'http://127.0.0.1:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
+                             <img :src="'http://192.168.43.184:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
                              <div class="card-body">
                                <h5 class="card-title">{{ warehouseItemVariant.product_name }}</h5>
                                <h5 class="card-title">Code: {{ warehouseItemVariant.product_code }}</h5>
@@ -295,7 +295,7 @@ export default {
   },
   methods:{
     stockTransferInsert(){
-      axios.post('http://127.0.0.1:8001/api/store/stock-transfer',this.form)
+      axios.post('http://192.168.43.184:8001/api/store/stock-transfer',this.form)
           .then(() => {
             this.$router.push({ name: 'stock-transfer-list'})
             Notification.success()
@@ -309,18 +309,18 @@ export default {
           .catch(error => this.errors = error.response.data.errors)
     },
     allOutOfStock(){
-      axios.get('http://127.0.0.1:8001/api/get-out-of-stock')
+      axios.get('http://192.168.43.184:8001/api/get-out-of-stock')
           .then(({data}) => (this.outOfStocks = data))
           .catch()
     },
     allStockTransferCart(){
-      axios.get('http://127.0.0.1:8001/api/stocktransfer/cart/')
+      axios.get('http://192.168.43.184:8001/api/stocktransfer/cart/')
           .then(({data}) => (this.stockTransferCarts = data))
           .catch()
     },
     AddToStockTransferCart(id,variant_id = null){
       let warehouse_id = this.form.from_warehouse_id;
-      axios.get('http://127.0.0.1:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
+      axios.get('http://192.168.43.184:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -335,12 +335,12 @@ export default {
           .catch()
     },
     selectedWarehouseItemVariant(id){
-      axios.get('http://127.0.0.1:8001/api/select-from-warehouse-item-variant/'+id)
+      axios.get('http://192.168.43.184:8001/api/select-from-warehouse-item-variant/'+id)
           .then(({data}) => (this.warehouseItemVariants = data))
           .catch()
     },
     removeItem(id){
-      axios.get('http://127.0.0.1:8001/api/remove/stocktransfer/cart/'+id)
+      axios.get('http://192.168.43.184:8001/api/remove/stocktransfer/cart/'+id)
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -350,7 +350,7 @@ export default {
     },
     increment(id){
       let warehouse_id = this.form.from_warehouse_id;
-      axios.get('http://127.0.0.1:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
+      axios.get('http://192.168.43.184:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -366,7 +366,7 @@ export default {
           .catch()
     },
     decrement(id){
-      axios.get('http://127.0.0.1:8001/api/decrement/stocktransfer/cart/'+id)
+      axios.get('http://192.168.43.184:8001/api/decrement/stocktransfer/cart/'+id)
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -375,12 +375,12 @@ export default {
           .catch()
     },
     allSupplier(){
-      axios.get('http://127.0.0.1:8001/api/supplier')
+      axios.get('http://192.168.43.184:8001/api/supplier')
           .then(({data}) => (this.suppliers = data))
           .catch()
     },
     fromWarehouse(){
-      axios.get('http://127.0.0.1:8001/api/warehouse')
+      axios.get('http://192.168.43.184:8001/api/warehouse')
           .then(({data}) => (this.fromWarehouses = data))
           .catch()
     },
@@ -388,10 +388,10 @@ export default {
       let id = event.target.value;
       if (id != null) {
         this.show = true;
-        axios.get('http://127.0.0.1:8001/api/select-from-warehouse/'+id)
+        axios.get('http://192.168.43.184:8001/api/select-from-warehouse/'+id)
             .then(({data}) => (this.toWarehouses = data))
             .catch()
-        axios.get('http://127.0.0.1:8001/api/from/warehouse/change/'+id)
+        axios.get('http://192.168.43.184:8001/api/from/warehouse/change/'+id)
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -402,7 +402,7 @@ export default {
 
               if(this.markers.length >1 ){
                 this.markers.splice(0);
-                axios.get('http://127.0.0.1:8001/api/from/warehouse/change/'+id)
+                axios.get('http://192.168.43.184:8001/api/from/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -413,7 +413,7 @@ export default {
 
                     });
               }else{
-                axios.get('http://127.0.0.1:8001/api/from/warehouse/change/'+id)
+                axios.get('http://192.168.43.184:8001/api/from/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -436,7 +436,7 @@ export default {
     toWarehouseChange(event){
       let id = event.target.value;
       if (id != null) {
-        axios.get('http://127.0.0.1:8001/api/to/warehouse/change/'+id)
+        axios.get('http://192.168.43.184:8001/api/to/warehouse/change/'+id)
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -447,7 +447,7 @@ export default {
               this.distanceCalculate()
               if(this.markers.length >2 ){
                 this.markers.splice(1);
-                axios.get('http://127.0.0.1:8001/api/to/warehouse/change/'+id)
+                axios.get('http://192.168.43.184:8001/api/to/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -467,7 +467,7 @@ export default {
     },
     selectedWarehouseItem(id){
       if (id != null) {
-        axios.get('http://127.0.0.1:8001/api/select-from-warehouse-item/'+id)
+        axios.get('http://192.168.43.184:8001/api/select-from-warehouse-item/'+id)
             .then(({data}) => (this.warehouseItems = data))
             .catch()
       } else {
@@ -476,12 +476,12 @@ export default {
 
     },
     allProduct(){
-      axios.get('http://127.0.0.1:8001/api/product')
+      axios.get('http://192.168.43.184:8001/api/product')
           .then(({data}) => (this.products = data))
           .catch()
     },
     subProduct(id){
-      axios.get('http://127.0.0.1:8001/api/getting/product/'+id)
+      axios.get('http://192.168.43.184:8001/api/getting/product/'+id)
           .then(({data}) => (this.getProducts = data))
     },
     distanceCalculate(){

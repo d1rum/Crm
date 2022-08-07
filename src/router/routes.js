@@ -14,6 +14,7 @@ import stocktransfer from "../pages/StockTransfer/stocktransfer";
 //Slider
 import CreateSlider from "../pages/slider/create";
 import SliderList from "../pages/slider/index";
+import EditSlider from "../pages/slider/edit";
 
 
 Vue.use(Router)
@@ -25,7 +26,7 @@ const routes = [
         name: 'admin',
 
     },
-    //Aut route
+    // Auth Login
     {
         path: '/admin/login',
         name: 'admin-login',
@@ -34,6 +35,7 @@ const routes = [
             title: ' admin login',
         }
     },
+    // Auth Logout
     {
         path: '/admin/logout',
         name: 'admin-logout',
@@ -42,24 +44,22 @@ const routes = [
             title: ' admin logout',
         }
     },
-    //stock-transfer
-
+    // Stock Transfer
     {
         path: '/admin/stock-transfer',
         name: 'admin-stock-transfer',
         component: stocktransfer,
         meta: {
-            title: ' admin logout',
+            title: ' admin stock transfer',
         }
     },
-
     //Slider
     {
         path: '/admin/create-slider',
         name: 'admin-create-slider',
         component: CreateSlider,
         meta: {
-            title: ' admin logout',
+            title: ' admin create slider',
         }
     },
     {
@@ -67,7 +67,15 @@ const routes = [
         name: 'admin-slider-list',
         component: SliderList,
         meta: {
-            title: ' admin logout',
+            title: ' admin slider list',
+        }
+    },
+    {
+        path: '/admin/edit-slider/:id',
+        name: 'admin-edit-slider',
+        component: EditSlider,
+        meta: {
+            title: ' admin edit slider',
         }
     },
 
