@@ -43,6 +43,8 @@ import EditFaq from "../pages/faq/edit";
 import CreateProduct from "../pages/product/create";
 import ProductList from "../pages/product/index";
 import EditProduct from "../pages/product/edit";
+import PriorityProduct from "../pages/product/priority";
+import VariantProduct from "../pages/product/variant";
 
 Vue.use(Router)
 const routes = [
@@ -278,6 +280,22 @@ const routes = [
         component: EditProduct,
         meta: {
             title: ' admin edit product',
+        }
+    },
+    {
+        path: '/admin/priority-product/:id',
+        name: 'admin-priority-product',
+        component: PriorityProduct,
+        meta: {
+            title: ' admin priority product',
+        }
+    },
+    {
+        path: '/admin/variant-product/:id',
+        name: 'admin-variant-product',
+        component: VariantProduct,
+        meta: {
+            title: ' admin variant product',
         }
     },
 

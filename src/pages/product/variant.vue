@@ -38,24 +38,8 @@
                       @filtered="onFiltered"
 
                   >
-                    <template v-slot:cell(description)="{item}">
-                      {{ item.blog_description.substring(0,30) }}
-                    </template>
-                    <template v-slot:cell(status)="{item}">
-                      <div v-if="item.blog_status === 1">
-                        <b-badge class="btn btn-success">Active</b-badge>
-                      </div>
-                      <div v-else>
-                        <b-badge class="btn btn-danger">Passive</b-badge>
-                      </div>
-                    </template>
-                    <template v-slot:cell(actions)="{item}">
-                      <router-link :to="{ name: 'admin-edit-blog',params:{id:item.id}}" class="btn btn-sm btn-dark">Edit</router-link>
-                      <a @click="deleteBlog(item.id)" style="color: white;" class="btn btn-sm btn-danger">Delete</a>
-                    </template>
-
-                    <template v-slot:cell(blogImage)="{item}">
-                      <img :src="'http://192.168.57.114:8001/'+item.blog_image" id="blog_photo">
+                    <template v-slot:cell(variantImage)="{item}">
+                      <img :src="'http://192.168.57.114:8001/'+item.variant_image" id="variant_photo">
                     </template>
 
                   </b-table>
@@ -96,23 +80,23 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    this.allBlog();
+    this.allProductVariant();
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
-      this.allBlog()
+      this.allProductVariant()
     })
   },
   data(){
     return{
-      collections:[],
+      productVariants:[],
       searchTerm:'',
       tablefields: [
-        { key: 'blogImage', label: 'Image', sortable: true, },
-        { key: 'blog_title', label: 'Title', sortable: true, },
-        { key: 'blog_seq', label: 'Seq', sortable: true, },
-        { key: 'description', label: 'Descriotion', sortable: true, },
-        { key: 'status', label: 'Status', sortable: true, },
-        { key: 'actions', label: 'Actions', sortable: true, },
+        { key: 'variantImage', label: 'Image', sortable: true, },
+        { key: 'sku_no', label: 'Sku No', sortable: true, },
+        { key: 'variant_quantity', label: 'Quantity', sortable: true, },
+        { key: 'product.product_name', label: 'Name', sortable: true, },
+        { key: 'size.size_name', label: 'Size', sortable: true, },
+        { key: 'color.color_name', label: 'Color', sortable: true, },
 
 
 
@@ -141,8 +125,8 @@ export default {
       return this.items.length;
     },
     filtersearch(){
-      return this.blogs.filter(blog => {
-        return blog.blog_title.match(this.searchTerm)
+      return this.productVariants.filter(productVariant => {
+        return productVariant.product.product_name.match(this.searchTerm)
 
       })
     }
@@ -151,7 +135,7 @@ export default {
     // Set the initial number of items
     this.totalRows = this.items.length;
 
-    this.allBlog();
+    this.allProductVariant();
   },
   methods:{
     onFiltered(filteredItems) {
@@ -159,41 +143,11 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    allBlog(){
-      axios.get('http://192.168.57.114:8001/api/blog')
+    allProductVariant(){
+      let id = this.$route.params.id;
+      axios.get('http://192.168.57.114:8001/api/get-product-variant/'+id)
           .then(({data}) => (this.items = data))
           .catch()
-    },
-    deleteBlog(id){
-      // eslint-disable-next-line no-undef
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.value) {
-          axios.delete('http://192.168.57.114:8001/api/blog/'+id)
-              .then(() => {
-                this.items = this.items.filter(item => {
-                  return item.id !== id
-                })
-              })
-              .catch(() => {
-                this.$router.push({name: 'admin-blog-list'})
-              })
-          // eslint-disable-next-line no-undef
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-          )
-        }
-      })
-
     },
   },
 
@@ -202,7 +156,7 @@ export default {
 </script>
 
 <style scoped>
-#blog_photo{
+#variant_photo{
   height: 40px;
   width: 40px;
 }

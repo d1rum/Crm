@@ -23,6 +23,12 @@ export default {
     Chat,
     Activity
   },
+  created(){
+    // eslint-disable-next-line no-undef
+    if(!User.loggedIn()){
+      this.$router.push({name: 'admin-login'})
+    }
+  },
   data() {
     return {
       sparklineChartData: sparklineChartData,

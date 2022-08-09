@@ -100,13 +100,12 @@
                 <ckeditor :editor="editor" v-model="form.product_description" class="form-control" id="productDescription"></ckeditor>
               </div>
               <br>
-              <p>Warehouse gelecek</p>
-<!--              <div class="form-group">-->
-<!--                <label for="productMainWarehouse">Main Warehouse</label>-->
-<!--                <select id="productMainWarehouse" class="form-control" v-model="form.warehouse_id">-->
-<!--                  <option :key="warehouse.id" :value="warehouse.id" v-for="warehouse in warehouses" v-if="warehouse.warehouse_type === 1">{{ warehouse.warehouse_name }}</option>-->
-<!--                </select>-->
-<!--              </div>-->
+              <div class="form-group">
+                <label for="productMainWarehouse">Main Warehouse</label>
+                <select id="productMainWarehouse" class="form-control" v-model="form.warehouse_id">
+                  <option :key="mainWarehouse.id" :value="mainWarehouse.id">{{ mainWarehouse.warehouse_name }}</option>
+                </select>
+              </div>
               <br>
               <div class="form-group">
                 <label for="productTax">Product Tax</label>
@@ -154,17 +153,17 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.100:8001/api/category/')
+    axios.get('http://192.168.57.114:8001/api/category/')
         .then(({data}) => (this.categories = data))
-    axios.get('http://192.168.1.100:8001/api/admin/collection/')
+    axios.get('http://192.168.57.114:8001/api/collection/')
         .then(({data}) => (this.collections = data))
-    axios.get('http://192.168.1.100:8001/api/supplier/')
+    axios.get('http://192.168.57.114:8001/api/supplier/')
         .then(({data}) => (this.suppliers = data))
-    axios.get('http://192.168.1.100:8001/api/unit/')
+    axios.get('http://192.168.57.114:8001/api/unit/')
         .then(({data}) => (this.units = data))
-    axios.get('http://192.168.1.100:8001/api/warehouse/')
-        .then(({data}) => (this.warehouses = data))
-    axios.get('http://192.168.1.100:8001/api/admin/product/')
+    axios.get('http://192.168.57.114:8001/api/main-warehouse/')
+        .then(({data}) => (this.mainWarehouse = data))
+    axios.get('http://192.168.57.114:8001/api/product/')
         .then(({data}) => (this.products = data))
 
   },
@@ -198,7 +197,7 @@ export default {
       categories:{},
       collections:{},
       suppliers:{},
-      warehouses:[],
+      mainWarehouse:{},
       units:{},
       getSubCategories:{},
       editor: ClassicEditor,
@@ -223,7 +222,7 @@ export default {
     switchCategorySelect(event){
       let id = event.target.value;
       if (id != null) {
-        axios.get('http://192.168.1.100:8001/api/select-to-category/'+id)
+        axios.get('http://192.168.57.114:8001/api/select-to-category/'+id)
             .then(({data}) => (this.getSubCategories = data))
             .catch()
       } else {
@@ -232,7 +231,7 @@ export default {
 
     },
     productInsert(){
-      axios.post('http://192.168.1.100:8001/api/admin/product',this.form)
+      axios.post('http://192.168.57.114:8001/api/product',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-product-list'})
             Notification.success()
