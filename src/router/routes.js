@@ -46,6 +46,16 @@ import EditProduct from "../pages/product/edit";
 import PriorityProduct from "../pages/product/priority";
 import VariantProduct from "../pages/product/variant";
 
+//Category
+import CategoryList from "../pages/category/index";
+
+//Sub-Category
+import SubcategoryList from "../pages/subcategory/index";
+
+
+//Color
+import ColorList from "../pages/color/index"
+
 Vue.use(Router)
 const routes = [
     { path: '', redirect: { name: 'admin_login' }},
@@ -298,6 +308,37 @@ const routes = [
             title: ' admin variant product',
         }
     },
+
+    //Category
+    {
+        path: '/admin/category-list',
+        name: 'admin-category-list',
+        component: CategoryList,
+        meta: {
+            title: ' admin category list',
+        }
+    },
+
+    //Sub-Category
+    {
+        path: '/admin/subcategory-list',
+        name: 'admin-subcategory-list',
+        component: SubcategoryList,
+        meta: {
+            title: ' admin subcategory list',
+        }
+    },
+
+    //Color
+    {
+        path: '/admin/color-list',
+        name: 'admin-color-list',
+        component: ColorList,
+        meta: {
+            title: ' admin color list',
+        }
+    },
+
 
 
 ];

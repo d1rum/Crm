@@ -78,7 +78,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.57.114:8001/api/collection/'+id)
+    axios.get('http://192.168.1.233:8001/api/collection/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -117,7 +117,7 @@ export default {
     },
     collectionUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.57.114:8001/api/collection/'+id,this.form)
+      axios.patch('http://192.168.1.233:8001/api/collection/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-collection-list'})
             Notification.success()

@@ -125,7 +125,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.57.114:8001/api/team/')
+    axios.get('http://192.168.1.233:8001/api/team/')
         .then(({data}) => (this.teams = data))
   },
 
@@ -172,7 +172,7 @@ export default {
       }
     },
     teamInsert(){
-      axios.post('http://192.168.57.114:8001/api/team',this.form)
+      axios.post('http://192.168.1.233:8001/api/team',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-team-list'})
             Notification.success()

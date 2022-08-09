@@ -105,7 +105,7 @@ export default {
       }
     },
     blogInsert(){
-      axios.post('http://192.168.57.114:8001/api/blog',this.form)
+      axios.post('http://192.168.1.100:8001/api/admin/blog',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-blog-list'})
             Notification.success()
