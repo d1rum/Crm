@@ -485,6 +485,7 @@ export default {
           .then(({data}) => (this.getProducts = data))
     },
     distanceCalculate(){
+
       let R = 6378137; // Earth’s mean radius in meter
       let dLat = rad(this.markers[1].position.lat - this.markers[0].position.lat);
       let dLong = rad(this.markers[1].position.lng - this.markers[0].position.lng);
