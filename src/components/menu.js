@@ -112,7 +112,7 @@ const menuItems = [{
                         id: 15,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/category-list'
                     },
 
                 ]
@@ -132,7 +132,7 @@ const menuItems = [{
                         id: 18,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/subcategory-list'
                     },
 
                 ]
@@ -421,7 +421,7 @@ const menuItems = [{
                         id: 58,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/color-list'
                     },
 
                 ]
