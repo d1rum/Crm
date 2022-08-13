@@ -1,12 +1,41 @@
 <script>
+import axios from "axios";
+
 /**
  * Topbar component
  */
 export default {
+  created(){
+    // eslint-disable-next-line no-undef
+    if(!User.loggedIn()){
+      this.$router.push({name: 'admin-login'})
+    }
+    this.allUserNotification();
+    this.allUserNotification();
+    this.timerNotification = setInterval(this.allUserNotification, 60000);
+    this.timerNotificationCount = setInterval(this.allUserNotification, 60000);
+    // eslint-disable-next-line no-undef
+    Reload.$on('AfterStatus',() => {
+      this.allUserNotification()
+      this.allUserNotificationCount()
+    })
+  },
   data() {
-    return {};
+    return {
+      notifications: {},
+    };
   },
   methods: {
+    allUserNotificationCount(){
+      return this.notifications.length;
+    },
+    allUserNotification(){
+      // eslint-disable-next-line no-undef
+      let userId = User.userId();
+      axios.get('http://192.168.11.114:8001/api/user/notification/'+userId)
+          .then(({data}) => (this.notifications = data))
+          .catch()
+    },
     initFullScreen() {
       document.body.classList.toggle("fullscreen-enable");
       if (
@@ -217,34 +246,13 @@ export default {
           <div class="p-3">
             <div class="row align-items-center">
               <div class="col">
-                <h5 class="m-0 font-size-16">Notifications (258)</h5>
+                <h5 class="m-0 font-size-16">Notifications ({{ this.allUserNotificationCount()}})</h5>
               </div>
             </div>
           </div>
-          <div data-simplebar style="max-height: 230px;">
-            <a href="javascript:void(0);" class="text-reset notification-item">
-              <div class="d-flex">
-                <div class="flex-shrink-0 me-3">
-                  <div class="avatar-xs">
-                    <span
-                      class="avatar-title bg-success rounded-circle font-size-16"
-                    >
-                      <i class="mdi mdi-cart-outline"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="flex-grow-1">
-                  <h6 class="mb-1">Your order is placed</h6>
-                  <div class="font-size-12 text-muted">
-                    <p class="mb-1">
-                      Dummy text of the printing and typesetting industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
+          <div data-simplebar style="max-height: 230px; overflow-y: scroll">
 
-            <a href class="text-reset notification-item">
+            <a href="" :key="notification.id" class="text-reset notification-item" v-for="notification in notifications">
               <div class="d-flex">
                 <div class="flex-shrink-0 me-3">
                   <div class="avatar-xs">
@@ -256,77 +264,77 @@ export default {
                   </div>
                 </div>
                 <div class="flex-grow-1">
-                  <h6 class="mt-0 mb-1">New Message received</h6>
+                  <h6 class="mt-0 mb-1">{{ notification.data }}</h6>
                   <div class="font-size-12 text-muted">
-                    <p class="mb-1">You have 87 unread messages</p>
+                    <p class="mb-1">{{ notification.created_at }}</p>
                   </div>
                 </div>
               </div>
             </a>
 
-            <a href class="text-reset notification-item">
-              <div class="d-flex">
-                <div class="flex-shrink-0 me-3">
-                  <div class="avatar-xs">
-                    <span
-                      class="avatar-title bg-info rounded-circle font-size-16"
-                    >
-                      <i class="mdi mdi-glass-cocktail"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="flex-grow-1">
-                  <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                  <div class="font-size-12 text-muted">
-                    <p class="mb-1">
-                      It is a long established fact that a reader will
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
+<!--            <a href class="text-reset notification-item">-->
+<!--              <div class="d-flex">-->
+<!--                <div class="flex-shrink-0 me-3">-->
+<!--                  <div class="avatar-xs">-->
+<!--                    <span-->
+<!--                      class="avatar-title bg-info rounded-circle font-size-16"-->
+<!--                    >-->
+<!--                      <i class="mdi mdi-glass-cocktail"></i>-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="flex-grow-1">-->
+<!--                  <h6 class="mt-0 mb-1">Your item is shipped</h6>-->
+<!--                  <div class="font-size-12 text-muted">-->
+<!--                    <p class="mb-1">-->
+<!--                      It is a long established fact that a reader will-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </a>-->
 
-            <a href class="text-reset notification-item">
-              <div class="d-flex">
-                <div class="flex-shrink-0 me-3">
-                  <div class="avatar-xs">
-                    <span
-                      class="avatar-title bg-primary rounded-circle font-size-16"
-                    >
-                      <i class="mdi mdi-cart-outline"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="flex-grow-1">
-                  <h6 class="mt-0 mb-1">Your order is placed</h6>
-                  <div class="font-size-12 text-muted">
-                    <p class="mb-1">
-                      Dummy text of the printing and typesetting industry.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
+<!--            <a href class="text-reset notification-item">-->
+<!--              <div class="d-flex">-->
+<!--                <div class="flex-shrink-0 me-3">-->
+<!--                  <div class="avatar-xs">-->
+<!--                    <span-->
+<!--                      class="avatar-title bg-primary rounded-circle font-size-16"-->
+<!--                    >-->
+<!--                      <i class="mdi mdi-cart-outline"></i>-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="flex-grow-1">-->
+<!--                  <h6 class="mt-0 mb-1">Your order is placed</h6>-->
+<!--                  <div class="font-size-12 text-muted">-->
+<!--                    <p class="mb-1">-->
+<!--                      Dummy text of the printing and typesetting industry.-->
+<!--                    </p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </a>-->
 
-            <a href class="text-reset notification-item">
-              <div class="d-flex">
-                <div class="flex-shrink-0 me-3">
-                  <div class="avatar-xs">
-                    <span
-                      class="avatar-title bg-danger rounded-circle font-size-16"
-                    >
-                      <i class="mdi mdi-message-text-outline"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="flex-grow-1">
-                  <h6 class="mt-0 mb-1">New Message received</h6>
-                  <div class="font-size-12 text-muted">
-                    <p class="mb-1">You have 87 unread messages</p>
-                  </div>
-                </div>
-              </div>
-            </a>
+<!--            <a href class="text-reset notification-item">-->
+<!--              <div class="d-flex">-->
+<!--                <div class="flex-shrink-0 me-3">-->
+<!--                  <div class="avatar-xs">-->
+<!--                    <span-->
+<!--                      class="avatar-title bg-danger rounded-circle font-size-16"-->
+<!--                    >-->
+<!--                      <i class="mdi mdi-message-text-outline"></i>-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="flex-grow-1">-->
+<!--                  <h6 class="mt-0 mb-1">New Message received</h6>-->
+<!--                  <div class="font-size-12 text-muted">-->
+<!--                    <p class="mb-1">You have 87 unread messages</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </a>-->
           </div>
           <div class="p-2 border-top">
             <div class="d-grid">

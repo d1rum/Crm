@@ -39,7 +39,7 @@
 
                   >
                     <template v-slot:cell(variantImage)="{item}">
-                      <img :src="'http://192.168.57.114:8001/'+item.variant_image" id="variant_photo">
+                      <img :src="'http://192.168.11.114:8001/'+item.variant_image" id="variant_photo">
                     </template>
 
                   </b-table>
@@ -145,7 +145,7 @@ export default {
     },
     allProductVariant(){
       let id = this.$route.params.id;
-      axios.get('http://192.168.57.114:8001/api/get-product-variant/'+id)
+      axios.get('http://192.168.11.114:8001/api/get-product-variant/'+id)
           .then(({data}) => (this.items = data))
           .catch()
     },

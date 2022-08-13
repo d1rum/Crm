@@ -186,13 +186,13 @@ const menuItems = [{
                         id: 26,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-variant'
                     },
                     {
                         id: 27,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/variant-list'
                     },
 
                 ]
@@ -226,13 +226,13 @@ const menuItems = [{
                         id: 32,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-about'
                     },
                     {
                         id: 33,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/about-list'
                     },
 
                 ]
@@ -266,13 +266,13 @@ const menuItems = [{
                         id: 38,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-service'
                     },
                     {
                         id: 39,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/service-list'
                     },
 
                 ]
@@ -306,13 +306,13 @@ const menuItems = [{
                         id: 44,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-project'
                     },
                     {
                         id: 45,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/project-list'
                     },
 
                 ]
@@ -326,13 +326,13 @@ const menuItems = [{
                         id: 47,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-referance'
                     },
                     {
                         id: 48,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/referance-list'
                     },
 
                 ]
@@ -346,13 +346,13 @@ const menuItems = [{
                         id: 471,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-campaign'
                     },
                     {
                         id: 481,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/campaign-list'
                     },
 
                 ]
@@ -495,13 +495,13 @@ const menuItems = [{
                         id: 23424,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-warehouse'
                     },
                     {
                         id: 2342,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/warehouse-list'
                     },
 
                 ]
@@ -555,13 +555,13 @@ const menuItems = [{
                         id: 23423424,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-supplier'
                     },
                     {
                         id: 232422342,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/supplier-list'
                     },
 
                 ]
@@ -575,25 +575,31 @@ const menuItems = [{
                         id: 345435351312,
                         label: 'Image Resize',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/edit-image-resize/:id'
                     },
                     {
                         id: 3353453,
-                        label: 'Web Site',
+                        label: 'Site Settings',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/edit-site-setting/:id'
                     },
                     {
                         id: 3534535,
-                        label: 'Panel',
+                        label: 'Settings',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/edit-setting/:id'
                     },
                     {
                         id: 34543535,
                         label: 'Google Maps',
                         icon: 'ti-home',
                         link: ''
+                    },
+                    {
+                        id: 34543535,
+                        label: 'Backup',
+                        icon: 'ti-home',
+                        link: '/admin/backup-list'
                     },
 
                 ]
@@ -607,13 +613,13 @@ const menuItems = [{
                         id: 345435345363,
                         label: 'Create',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/create-employee'
                     },
                     {
                         id: 45654646464,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/employee-list'
                     },
 
 

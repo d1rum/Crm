@@ -221,7 +221,7 @@ export default {
       this.editModalDisplay =false;
     },
     addCategory(){
-      axios.post('http://192.168.1.233:8001/api/category',this.form)
+      axios.post('http://192.168.11.114:8001/api/category',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getCategoryList();
@@ -231,7 +231,7 @@ export default {
 
     },
     getCategoryList(){
-      axios.get('http://192.168.1.233:8001/api/category')
+      axios.get('http://192.168.11.114:8001/api/category')
           .then((res) => {
             this.items = res.data;
           })
@@ -239,7 +239,7 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
-      axios.patch('http://192.168.1.233:8001/api/category/'+id,this.editForm)
+      axios.patch('http://192.168.11.114:8001/api/category/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getCategoryList();
@@ -260,7 +260,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.233:8001/api/category/'+id)
+          axios.delete('http://192.168.11.114:8001/api/category/'+id)
               .then(() => {
                 this.getCategoryList();
                 this.categories = this.categories.filter(role => {

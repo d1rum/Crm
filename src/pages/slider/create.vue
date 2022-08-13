@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.57.114:8001/api/slider/')
+    axios.get('http://192.168.11.114:8001/api/slider/')
         .then(({data}) => (this.sliders = data))
   },
 

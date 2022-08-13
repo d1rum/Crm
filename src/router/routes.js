@@ -46,6 +46,63 @@ import EditProduct from "../pages/product/edit";
 import PriorityProduct from "../pages/product/priority";
 import VariantProduct from "../pages/product/variant";
 
+// Variant
+import CreateVariant from "../pages/variant/create";
+import VariantList from "../pages/variant/index";
+import EditVariant from "../pages/variant/edit";
+
+// Warehouse
+import CreateWarehouse from "../pages/warehouse/create";
+import WarehouseList from "../pages/warehouse/index";
+import EditWarehouse from "../pages/warehouse/edit";
+
+// Service
+import CreateService from "../pages/service/create";
+import ServiceList from "../pages/service/index";
+import EditService from "../pages/service/edit";
+
+// Referance
+import CreateReferance from "../pages/referance/create";
+import ReferanceList from "../pages/referance/index";
+import EditReferance from "../pages/referance/edit";
+
+// Project
+import CreateProject from "../pages/project/create";
+import ProjectList from "../pages/project/index";
+import EditProject from "../pages/project/edit";
+
+// Employee
+import CreateEmployee from "../pages/employee/create";
+import EmployeeList from "../pages/employee/index";
+import EditEmployee from "../pages/employee/edit";
+
+// Supplier
+import CreateSupplier from "../pages/supplier/create";
+import SupplierList from "../pages/supplier/index";
+import EditSupplier from "../pages/supplier/edit";
+
+// About Us
+import CreateAbout from "../pages/about/create";
+import AboutList from "../pages/about/index";
+import EditAbout from "../pages/about/edit";
+
+// Campaign
+import CreateCampaign from "../pages/campaign/create";
+import CampaignList from "../pages/campaign/index";
+import EditCampaign from "../pages/campaign/edit";
+
+// Image Resize
+import EditImageResize from "../pages/imageResize/edit";
+
+// Site Setting
+import EditSiteSetting from "../pages/sitesettings/edit";
+
+// Setting
+import EditSetting from "../pages/settings/edit";
+
+// Backup
+import BackupList from "../pages/backup/index";
+
 //Category
 import CategoryList from "../pages/category/index";
 
@@ -309,7 +366,7 @@ const routes = [
         }
     },
 
-    //Category
+    // Category
     {
         path: '/admin/category-list',
         name: 'admin-category-list',
@@ -319,7 +376,7 @@ const routes = [
         }
     },
 
-    //Sub-Category
+    // Sub-Category
     {
         path: '/admin/subcategory-list',
         name: 'admin-subcategory-list',
@@ -329,13 +386,275 @@ const routes = [
         }
     },
 
-    //Color
+    // Color
     {
         path: '/admin/color-list',
         name: 'admin-color-list',
         component: ColorList,
         meta: {
             title: ' admin color list',
+        }
+    },
+
+    // Variant
+    {
+        path: '/admin/create-variant',
+        name: 'admin-create-variant',
+        component: CreateVariant,
+        meta: {
+            title: ' admin create variant',
+        }
+    },
+    {
+        path: '/admin/variant-list',
+        name: 'admin-variant-list',
+        component: VariantList,
+        meta: {
+            title: ' admin variant list',
+        }
+    },
+    {
+        path: '/admin/edit-variant/:id',
+        name: 'admin-edit-variant',
+        component: EditVariant,
+        meta: {
+            title: ' admin edit variant',
+        }
+    },
+    // Warehouse
+    {
+        path: '/admin/create-warehouse',
+        name: 'admin-create-warehouse',
+        component: CreateWarehouse,
+        meta: {
+            title: ' admin create warehouse',
+        }
+    },
+    {
+        path: '/admin/warehouse-list',
+        name: 'admin-warehouse-list',
+        component: WarehouseList,
+        meta: {
+            title: ' admin warehouse list',
+        }
+    },
+    {
+        path: '/admin/edit-warehouse/:id',
+        name: 'admin-edit-warehouse',
+        component: EditWarehouse,
+        meta: {
+            title: ' admin edit warehouse',
+        }
+    },
+    // Service
+    {
+        path: '/admin/create-service',
+        name: 'admin-create-service',
+        component: CreateService,
+        meta: {
+            title: ' admin create service',
+        }
+    },
+    {
+        path: '/admin/service-list',
+        name: 'admin-service-list',
+        component: ServiceList,
+        meta: {
+            title: ' admin service list',
+        }
+    },
+    {
+        path: '/admin/edit-service/:id',
+        name: 'admin-edit-service',
+        component: EditService,
+        meta: {
+            title: ' admin edit service',
+        }
+    },
+    // Referance
+    {
+        path: '/admin/create-referance',
+        name: 'admin-create-referance',
+        component: CreateReferance,
+        meta: {
+            title: ' admin create referance',
+        }
+    },
+    {
+        path: '/admin/referance-list',
+        name: 'admin-referance-list',
+        component: ReferanceList,
+        meta: {
+            title: ' admin referance list',
+        }
+    },
+    {
+        path: '/admin/edit-referance/:id',
+        name: 'admin-edit-referance',
+        component: EditReferance,
+        meta: {
+            title: ' admin edit referance',
+        }
+    },
+    // Project
+    {
+        path: '/admin/create-project',
+        name: 'admin-create-project',
+        component: CreateProject,
+        meta: {
+            title: ' admin create project',
+        }
+    },
+    {
+        path: '/admin/project-list',
+        name: 'admin-project-list',
+        component: ProjectList,
+        meta: {
+            title: ' admin project list',
+        }
+    },
+    {
+        path: '/admin/edit-project/:id',
+        name: 'admin-edit-project',
+        component: EditProject,
+        meta: {
+            title: ' admin edit project',
+        }
+    },
+    // Employee
+    {
+        path: '/admin/create-employee',
+        name: 'admin-create-employee',
+        component: CreateEmployee,
+        meta: {
+            title: ' admin create employee',
+        }
+    },
+    {
+        path: '/admin/employee-list',
+        name: 'admin-employee-list',
+        component: EmployeeList,
+        meta: {
+            title: ' admin employee list',
+        }
+    },
+    {
+        path: '/admin/edit-employee/:id',
+        name: 'admin-edit-employee',
+        component: EditEmployee,
+        meta: {
+            title: ' admin edit employee',
+        }
+    },
+    // Supplier
+    {
+        path: '/admin/create-supplier',
+        name: 'admin-create-supplier',
+        component: CreateSupplier,
+        meta: {
+            title: ' admin create supplier',
+        }
+    },
+    {
+        path: '/admin/supplier-list',
+        name: 'admin-supplier-list',
+        component: SupplierList,
+        meta: {
+            title: ' admin supplier list',
+        }
+    },
+    {
+        path: '/admin/edit-supplier/:id',
+        name: 'admin-edit-supplier',
+        component: EditSupplier,
+        meta: {
+            title: ' admin edit supplier',
+        }
+    },
+    // About Us
+    {
+        path: '/admin/create-about',
+        name: 'admin-create-about',
+        component: CreateAbout,
+        meta: {
+            title: ' admin create about',
+        }
+    },
+    {
+        path: '/admin/about-list',
+        name: 'admin-about-list',
+        component: AboutList,
+        meta: {
+            title: ' admin about list',
+        }
+    },
+    {
+        path: '/admin/edit-about/:id',
+        name: 'admin-edit-about',
+        component: EditAbout,
+        meta: {
+            title: ' admin edit about',
+        }
+    },
+    // Campaign
+    {
+        path: '/admin/create-campaign',
+        name: 'admin-create-campaign',
+        component: CreateCampaign,
+        meta: {
+            title: ' admin create campaign',
+        }
+    },
+    {
+        path: '/admin/campaign-list',
+        name: 'admin-campaign-list',
+        component: CampaignList,
+        meta: {
+            title: ' admin campaign list',
+        }
+    },
+    {
+        path: '/admin/edit-campaign/:id',
+        name: 'admin-edit-campaign',
+        component: EditCampaign,
+        meta: {
+            title: ' admin edit campaign',
+        }
+    },
+    // Image Resize
+    {
+        path: '/admin/edit-image-resize/:id',
+        name: 'admin-edit-image-resize',
+        component: EditImageResize,
+        meta: {
+            title: ' admin edit image resize',
+        }
+    },
+    // Site Settings
+    {
+        path: '/admin/edit-site-setting/:id',
+        name: 'admin-edit-site-setting',
+        component: EditSiteSetting,
+        meta: {
+            title: ' admin edit site setting',
+        }
+    },
+    // Settings
+    {
+        path: '/admin/edit-setting/:id',
+        name: 'admin-edit-setting',
+        component: EditSetting,
+        meta: {
+            title: ' admin edit setting',
+        }
+    },
+    // Backup
+    {
+        path: '/admin/backup-list',
+        name: 'admin-backup-list',
+        component: BackupList,
+        meta: {
+            title: ' admin backup list',
         }
     },
 

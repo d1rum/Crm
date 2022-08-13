@@ -251,7 +251,7 @@ export default {
       this.editModalDisplay =false;
     },
     addColor(){
-      axios.post('http://192.168.1.233:8001/api/color',this.form)
+      axios.post('http://192.168.11.114:8001/api/color',this.form)
           // eslint-disable-next-line no-console
           .then((data) => {console.log(data)
             this.editModalDisplay = false;
@@ -262,7 +262,7 @@ export default {
 
     },
     getColorList(){
-      axios.get('http://192.168.1.233:8001/api/color')
+      axios.get('http://192.168.11.114:8001/api/color')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -272,7 +272,7 @@ export default {
     },
     editColor(id){
       // eslint-disable-next-line no-console
-      axios.patch('http://192.168.1.233:8001/api/color/'+id,this.editForm)
+      axios.patch('http://192.168.11.114:8001/api/color/'+id,this.editForm)
           .then((res) => {
             // eslint-disable-next-line no-console
             console.log(res);
@@ -294,7 +294,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.233:8001/api/color/'+id)
+          axios.delete('http://192.168.11.114:8001/api/color/'+id)
               .then(() => {
                 this.getColorList();
                 this.categories = this.categories.filter(role => {
