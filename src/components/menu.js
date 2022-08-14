@@ -103,12 +103,6 @@ const menuItems = [{
                 icon: 'ti-package',
                 subItems: [
                     {
-                        id: 14,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
-                    {
                         id: 15,
                         label: 'List',
                         icon: 'ti-home',
@@ -122,12 +116,6 @@ const menuItems = [{
                 label: 'Sub Category',
                 icon: 'ti-package',
                 subItems: [
-                    {
-                        id: 17,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
                     {
                         id: 18,
                         label: 'List',
@@ -392,16 +380,10 @@ const menuItems = [{
                 icon: 'ti-package',
                 subItems: [
                     {
-                        id: 54,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
-                    {
                         id: 55,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/size-list'
                     },
 
                 ]
@@ -411,12 +393,6 @@ const menuItems = [{
                 label: 'Color',
                 icon: 'ti-package',
                 subItems: [
-                    {
-                        id: 57,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
                     {
                         id: 58,
                         label: 'List',
@@ -432,16 +408,10 @@ const menuItems = [{
                 icon: 'ti-package',
                 subItems: [
                     {
-                        id: 60,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
-                    {
                         id: 61,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/unit-list'
                     },
 
                 ]
@@ -472,16 +442,10 @@ const menuItems = [{
                 icon: 'ti-package',
                 subItems: [
                     {
-                        id: 312,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
-                    {
                         id: 312313,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/task-list'
                     },
 
                 ]
@@ -532,16 +496,10 @@ const menuItems = [{
                 icon: 'ti-package',
                 subItems: [
                     {
-                        id: 234324,
-                        label: 'Create',
-                        icon: 'ti-home',
-                        link: ''
-                    },
-                    {
                         id: 23242,
                         label: 'List',
                         icon: 'ti-home',
-                        link: ''
+                        link: '/admin/role-list'
                     },
 
                 ]
@@ -657,16 +615,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 3453453564345,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 3454353,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/shipping-company-list'
             },
 
         ]
@@ -677,16 +629,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 4564646456,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 4353535,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/shipping-company-deci-list'
             },
 
         ]
@@ -697,16 +643,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 45646421,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 23243242,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/shipping-company-distance-list'
             },
 
         ]
@@ -717,16 +657,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 5435353,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 3453453,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/shipping-post-type-list'
             },
 
         ]
@@ -737,16 +671,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 35655453,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 5453432,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/shipping-service-list'
             },
 
         ]
@@ -765,16 +693,10 @@ const menuItems = [{
         icon: 'ti-package',
         subItems: [
             {
-                id: 456464564,
-                label: 'Create',
-                icon: 'ti-home',
-                link: ''
-            },
-            {
                 id: 5676564343,
                 label: 'List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/payment-method-list'
             },
 
         ]

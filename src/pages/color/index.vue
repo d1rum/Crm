@@ -5,38 +5,32 @@
       <div class="col-sm-6 col-md-3 mt-4">
         <div class="text-center">
           <b-modal id="edit-modal" v-model="displayModal" title="Edit Color" hide title-class="font-18">
-            <div>
+            <div class="form-group">
               <label>Color Name</label>
-              <b-form-input v-model="editForm.color_name" placeholder="Add Color Name"></b-form-input>
+              <b-form-input id="edit-color-name" v-model="editForm.color_name" placeholder="Add Color Name"></b-form-input>
             </div>
-
-            <div>
+            <br>
+            <div class="form-group">
               <label>Color Code</label>
-              <b-form-input v-model="editForm.color_code" placeholder="Add Color Code"></b-form-input>
-
+              <b-form-input id="edit-color-code" v-model="editForm.color_code" placeholder="Add Color Code"></b-form-input>
             </div>
-
             <template #modal-footer>
               <button v-b-modal.modal-close_visit data-dismiss="modal" @click="closeModal" class="btn btn-danger btn-sm m-1">Close</button>
               <button v-b-modal.modal-close_visit class="btn btn-success btn-sm m-1" @click="editColor(id)" >Save</button>
             </template>
           </b-modal>
         </div>
-
         <div class="text-center">
           <b-modal id="modal-standard"  v-model="editModalDisplay" title="Add Color" hide title-class="font-18">
-            <div>
+            <div class="form-group">
               <label>Color Name</label>
-              <b-form-input v-model="form.color_name" placeholder="Add Color Name"></b-form-input>
+              <b-form-input id="add-color-name" v-model="form.color_name" placeholder="Add Color Name"></b-form-input>
             </div>
-
-            <div>
+            <br>
+            <div class="form-group">
               <label>Color Code</label>
-              <b-form-input v-model="form.color_code" placeholder="Add Color Code"></b-form-input>
-
+              <b-form-input id="add-color-code" v-model="form.color_code" placeholder="Add Color Code"></b-form-input>
             </div>
-
-
             <template  #modal-footer>
               <button  data-dismiss="modal" @click="closeModal" class="btn btn-danger btn-sm m-1">Close</button>
               <b-button  for="edit-modal" class="btn btn-success btn-sm m-1" @click="addColor" >Save</b-button>
@@ -46,12 +40,8 @@
       </div>
       <div class="container-fluid">
         <div class="row">
-
-
           <div class="col-md-12">
-
             <div class="card">
-
               <div class="card-body">
                 <div style="margin-left: 575px" class="col-sm-4">
                   <div class="float-end d-none d-md-block">
@@ -59,19 +49,14 @@
                   </div>
                 </div>
                 <b-row>
-
                   <b-col xl="6">
-
                     <b-input-group class="datatable-btn">
                       <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
                       <b-input-group-append>
                         <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
                       </b-input-group-append>
-
                     </b-input-group>
-
                   </b-col>
-
                   <b-col xl="6">
                     <b-form-group  label-cols="2" label="Per page" class="mb-4 datatable-select">
                       <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
@@ -118,28 +103,13 @@
 
         </div>
       </div>
-
-
-      <!-- begin row -->
-      <!-- end row -->
-      <!-- begin row -->
-
-
       <!-- end row -->
     </div>
   </Layout>
-
-
-
 </template>
-
-
 <script>
-import axios from "axios";
 import Layout from "../../router/layouts/main.vue";
 import PageHeader from "@/components/page-header";
-
-
 
 export default {
   components:{
@@ -198,9 +168,6 @@ export default {
           href: "/",
           active: true
         },
-
-
-
       ],
       searchTerm:'',
       filter: null,
@@ -251,7 +218,7 @@ export default {
       this.editModalDisplay =false;
     },
     addColor(){
-      axios.post('http://192.168.11.114:8001/api/color',this.form)
+      this.$http.post('http://172.16.1.66:8001/api/color',this.form)
           // eslint-disable-next-line no-console
           .then((data) => {console.log(data)
             this.editModalDisplay = false;
@@ -262,7 +229,7 @@ export default {
 
     },
     getColorList(){
-      axios.get('http://192.168.11.114:8001/api/color')
+      this.$http.get('http://172.16.1.66:8001/api/color')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -272,7 +239,7 @@ export default {
     },
     editColor(id){
       // eslint-disable-next-line no-console
-      axios.patch('http://192.168.11.114:8001/api/color/'+id,this.editForm)
+      this.$http.patch('http://172.16.1.66:8001/api/color/'+id,this.editForm)
           .then((res) => {
             // eslint-disable-next-line no-console
             console.log(res);
@@ -294,7 +261,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.11.114:8001/api/color/'+id)
+          this.$http.delete('http://172.16.1.66:8001/api/color/'+id)
               .then(() => {
                 this.getColorList();
                 this.categories = this.categories.filter(role => {
@@ -306,7 +273,7 @@ export default {
           // eslint-disable-next-line no-undef
           Swal.fire(
               'Deleted!',
-              'Your file has been deleted.',
+              'Your data has been deleted.',
               'success'
           )
         }

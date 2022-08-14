@@ -5,14 +5,16 @@
       <div class="col-sm-6 col-md-3 mt-4">
         <div class="text-center">
           <b-modal id="modal-standard" v-model="displayModal" title="Add Sub Category" hide title-class="font-18">
-            <label >Select Category</label>
-            <b-form-select id="category-select-add" class="form-control"  v-model="form.category_id" value-field="id" text-field="category_name" :options="categories">Category</b-form-select>
-            <div style="margin-top: 15px">
+            <div class="form-group">
+              <label >Select Category</label>
+              <b-form-select id="category-select-add" class="form-control"  v-model="form.category_id" value-field="id" text-field="category_name" :options="categories">Category</b-form-select>
+            </div >
+            <br>
+             <div  class="form-group">
               <label >Sub Category Name</label>
-
               <b-form-input  v-model="form.subcategory_name" id="add-category" placeholder="Add Sub Category"></b-form-input>
             </div>
-
+            <br>
             <template #modal-footer>
               <button  data-dismiss="modal" @click="closeModal" class="btn btn-danger btn-sm m-1">Close</button>
               <button  class="btn btn-success btn-sm m-1" @click="addSubCategory" >Save</button>
@@ -62,9 +64,16 @@
 
                 <div class="table-responsive datatable-vue">
                             <b-modal id="edit-modal" v-model="editDisplayModal"  title="Edit Sub Category" hide title-class="font-18">
-                              <b-form-select class="form-control"  v-model="editForm.category_id" value-field="id" text-field="category_name" :options="categories">Category</b-form-select>
-
-                              <b-form-input style="margin-top: 15px" v-model="editForm.subcategory_name" placeholder="Edit Sub Category"></b-form-input>
+                              <div class="from-group">
+                                <label >Select Category</label>
+                                <b-form-select id="edit-cat-name" class="form-control"  v-model="editForm.category_id" value-field="id" text-field="category_name" :options="categories">Category</b-form-select>
+                              </div>
+                              <br>
+                              <div class="from-group">
+                                <label >Sub Category Name</label>
+                                <b-form-input id="edi-sub-name" v-model="editForm.subcategory_name" placeholder="Edit Sub Category"></b-form-input>
+                              </div>
+                              <br>
                               <template  #modal-footer>
                                 <button  data-dismiss="modal" @click="closeModal" class="btn btn-danger btn-sm m-1">Close</button>
                                 <b-button  class="btn btn-success btn-sm m-1" @click="editCategory(id)" >Save</b-button>
@@ -113,7 +122,7 @@
 
 </template>
 <script>
-import axios from "axios";
+
 import Layout from "../../router/layouts/main.vue";
 import PageHeader from "@/components/page-header";
 
@@ -216,7 +225,7 @@ export default {
       this.form.subcategory_name = null;
     },
     getCategoryList() {
-      axios.get('http://192.168.11.114:8001/api/category/')
+      this.$http.get('http://172.16.1.66:8001/api/category/')
           .then((res) => {this.categories = res.data
             // eslint-disable-next-line no-console
           })
@@ -240,7 +249,7 @@ export default {
     addSubCategory(){
       // eslint-disable-next-line no-console
 
-      axios.post('http://192.168.11.114:8001/api/subcategory',this.form)
+      this.$http.post('http://172.16.1.66:8001/api/subcategory',this.form)
           // eslint-disable-next-line no-console
           .then((res) => {console.log(res)
             this.displayModal = false;
@@ -253,7 +262,7 @@ export default {
     },
     getSubCategoryList(){
 
-      axios.get('http://192.168.11.114:8001/api/subcategory')
+      this.$http.get('http://172.16.1.66:8001/api/subcategory')
           .then((res) => {
             this.items = res.data;
 
@@ -262,7 +271,7 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
-      axios.patch('http://192.168.11.114:8001/api/subcategory/'+id,this.editForm)
+      this.$http.patch('http://172.16.1.66:8001/api/subcategory/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getSubCategoryList();
@@ -283,7 +292,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.11.114:8001/api/subcategory/'+id)
+          this.$http.delete('http://172.16.1.66:8001/api/subcategory/'+id)
               .then(() => {
                 this.getSubCategoryList();
                 this.categories = this.categories.filter(role => {
@@ -295,7 +304,7 @@ export default {
           // eslint-disable-next-line no-undef
           Swal.fire(
               'Deleted!',
-              'Your file has been deleted.',
+              'Your data has been deleted.',
               'success'
           )
         }

@@ -58,7 +58,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.11.114:8001/api/faq/')
+    axios.get('http://172.16.1.66:8001/api/faq/')
         .then(({data}) => (this.faqs = data))
   },
 
@@ -78,7 +78,7 @@ export default {
 
   methods:{
     faqInsert(){
-      axios.post('http://192.168.11.114:8001/api/faq',this.form)
+      axios.post('http://172.16.1.66:8001/api/faq',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-faq-list'})
             Notification.success()

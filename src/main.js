@@ -24,6 +24,7 @@ window.Notification = Notification
 
 // Sweet Alert Start
 import Swal from 'sweetalert2'
+import axios from "axios";
 window.Swal = Swal;
 
 const Toast = Swal.mixin({
@@ -67,6 +68,11 @@ Vue.use(VueGoogleMaps, {
   installComponents: true
 })
 Vue.component('apexchart', VueApexCharts)
+
+axios.defaults.headers.common = {'X-Requested-With': 'XMLHttpRequest'}
+axios.defaults.baseURL =  process.env.HTTP_URL;
+Vue.prototype.$http = axios;
+
 
 new Vue({
   router,

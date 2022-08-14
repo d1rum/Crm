@@ -105,13 +105,31 @@ import BackupList from "../pages/backup/index";
 
 //Category
 import CategoryList from "../pages/category/index";
-
 //Sub-Category
 import SubcategoryList from "../pages/subcategory/index";
-
-
 //Color
-import ColorList from "../pages/color/index"
+import ColorList from "../pages/color/index";
+//Size
+import SizeList from "../pages/size/index";
+//Unit
+import UnitList from "../pages/unit/index";
+//Task
+import TaskList from '../pages/task/index';
+//Role
+import RoleList from '../pages/role/index';
+//Payment-Method
+import PaymentMethodList from '../pages/payment_method/index';
+//Shipping-Company
+import ShippingCompanyList from '../pages/shipping_company/index';
+//Shipping-Company-Deci
+import ShippingCompanyDeciList from '../pages/shipping_company_deci/index';
+//Shipping-Company-Distance
+import ShipComDisList from '../pages/shipping_company_dinstance/index'
+//Ship-Com-Post-Type
+import ShipComPostType from '../pages/shipping_company_post_type/index';
+//Ship-Com-Service
+import ShipComServiceList from '../pages/shipping_company_service/index';
+
 
 Vue.use(Router)
 const routes = [
@@ -365,37 +383,6 @@ const routes = [
             title: ' admin variant product',
         }
     },
-
-    // Category
-    {
-        path: '/admin/category-list',
-        name: 'admin-category-list',
-        component: CategoryList,
-        meta: {
-            title: ' admin category list',
-        }
-    },
-
-    // Sub-Category
-    {
-        path: '/admin/subcategory-list',
-        name: 'admin-subcategory-list',
-        component: SubcategoryList,
-        meta: {
-            title: ' admin subcategory list',
-        }
-    },
-
-    // Color
-    {
-        path: '/admin/color-list',
-        name: 'admin-color-list',
-        component: ColorList,
-        meta: {
-            title: ' admin color list',
-        }
-    },
-
     // Variant
     {
         path: '/admin/create-variant',
@@ -655,6 +642,123 @@ const routes = [
         component: BackupList,
         meta: {
             title: ' admin backup list',
+        }
+    },
+    //Category
+    {
+        path: '/admin/category-list',
+        name: 'admin-category-list',
+        component: CategoryList,
+        meta: {
+            title: ' admin category list',
+        }
+    },
+//Sub-Category
+    {
+        path: '/admin/subcategory-list',
+        name: 'admin-subcategory-list',
+        component: SubcategoryList,
+        meta: {
+            title: ' admin subcategory list',
+        }
+    },
+//Color
+    {
+        path: '/admin/color-list',
+        name: 'admin-color-list',
+        component: ColorList,
+        meta: {
+            title: ' admin color list',
+        }
+    },
+//Size
+    {
+        path: '/admin/size-list',
+        name: 'admin-size-list',
+        component: SizeList,
+        meta: {
+            title: ' admin size list',
+        }
+    },
+//Unit
+    {
+        path: '/admin/unit-list',
+        name: 'admin-unit-list',
+        component: UnitList,
+        meta: {
+            title: ' admin unit list',
+        }
+    },
+//Task
+    {
+        path: '/admin/task-list',
+        name: 'admin-task-list',
+        component: TaskList,
+        meta: {
+            title: ' admin task list',
+        }
+    },
+//Role
+    {
+        path: '/admin/role-list',
+        name: 'admin-role-list',
+        component: RoleList,
+        meta: {
+            title: ' admin role list',
+        }
+    },
+//Payment-Method
+    {
+        path: '/admin/payment-method-list',
+        name: 'admin-payment-method-list',
+        component: PaymentMethodList,
+        meta: {
+            title: ' admin payment-method list',
+        }
+    },
+//Shipping Company
+    {
+        path: '/admin/shipping-company-list',
+        name: 'admin-shipping-company-list',
+        component: ShippingCompanyList,
+        meta: {
+            title: ' admin shipping company list',
+        }
+    },
+//Shipping Company Deci
+    {
+        path: '/admin/shipping-company-deci-list',
+        name: 'admin-shipping-company-deci-list',
+        component: ShippingCompanyDeciList,
+        meta: {
+            title: ' admin shipping company deci list',
+        }
+    },
+//Shipping Company Distance
+    {
+        path: '/admin/shipping-company-distance-list',
+        name: 'admin-shipping-company-distance-list',
+        component: ShipComDisList,
+        meta: {
+            title: ' admin shipping company distance list',
+        }
+    },
+//Shipping Company Post Type
+    {
+        path: '/admin/shipping-post-type-list',
+        name: 'admin-shipping-post-type-list',
+        component: ShipComPostType,
+        meta: {
+            title: ' admin shipping company posttype list',
+        }
+    },
+//Shipping Company Service
+    {
+        path: '/admin/shipping-service-list',
+        name: 'admin-shipping-service-list',
+        component: ShipComServiceList,
+        meta: {
+            title: ' admin shipping company service list',
         }
     },
 

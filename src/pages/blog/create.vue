@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.11.114:8001/api/blog/')
+    axios.get('http://172.16.1.66:8001/api/blog/')
         .then(({data}) => (this.blogs = data))
   },
 

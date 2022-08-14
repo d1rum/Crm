@@ -114,7 +114,7 @@
 
 
 <script>
-import axios from "axios";
+
 import Layout from "../../router/layouts/main.vue";
 import PageHeader from "@/components/page-header";
 
@@ -221,17 +221,18 @@ export default {
       this.editModalDisplay =false;
     },
     addCategory(){
-      axios.post('http://192.168.11.114:8001/api/category',this.form)
+      this.$http.post('http://172.16.1.66:8001/api/category',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getCategoryList();
             this.form.category_name =null;
+            this.$toasted.show('hüseyin selamlar :D')
           })
           .catch()
 
     },
     getCategoryList(){
-      axios.get('http://192.168.11.114:8001/api/category')
+      this.$http.get('http://172.16.1.66:8001/api/category')
           .then((res) => {
             this.items = res.data;
           })
@@ -239,7 +240,7 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
-      axios.patch('http://192.168.11.114:8001/api/category/'+id,this.editForm)
+      this.$http.patch('http://172.16.1.66:8001/api/category/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getCategoryList();
@@ -260,7 +261,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.11.114:8001/api/category/'+id)
+          this.$http.delete('http://172.16.1.66:8001/api/category/'+id)
               .then(() => {
                 this.getCategoryList();
                 this.categories = this.categories.filter(role => {
@@ -272,7 +273,7 @@ export default {
           // eslint-disable-next-line no-undef
           Swal.fire(
               'Deleted!',
-              'Your file has been deleted.',
+              'Your data has been deleted.',
               'success'
           )
         }
