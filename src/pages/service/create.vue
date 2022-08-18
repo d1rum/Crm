@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://172.16.1.66:8001/api/service/')
+    axios.get('http://172.16.2.186:8001/api/service/')
         .then(({data}) => (this.services = data))
 
   },
@@ -106,7 +106,7 @@ export default {
       }
     },
     serviceInsert(){
-      axios.post('http://172.16.1.66:8001/api/service',this.form)
+      axios.post('http://172.16.2.186:8001/api/service',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-service-list'})
             Notification.success()

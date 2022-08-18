@@ -189,7 +189,7 @@ export default {
   methods:{
     webSiteSettings(){
       let id = 0;
-      axios.get('http://172.16.1.66:8001/api/website-settings/'+id)
+      axios.get('http://172.16.2.186:8001/api/website-settings/'+id)
           .then(({data}) => (this.form = data))
           .catch()
     },
@@ -218,7 +218,7 @@ export default {
       }
     },
     websiteSettingsUpdate(){
-      axios.post('http://172.16.1.66:8001/api/website-settings/',this.form)
+      axios.post('http://172.16.2.186:8001/api/website-settings/',this.form)
           .then(() => {
             this.$router.push({ name: 'admin'})
             // eslint-disable-next-line no-undef

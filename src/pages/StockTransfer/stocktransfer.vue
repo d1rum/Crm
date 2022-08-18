@@ -54,14 +54,20 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   Km: <strong>{{ getKm }}</strong>
                 </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Duration: <strong>{{ getDuration }}</strong>
+                </li>
               </ul>
               <!--                        <input type="text" v-mask="'##/##/####'" v-model="qty">-->
               <br><br>
               <GmapMap v-show="show" ref="mmm" :zoom="7" :center="center" style="width: auto; height: 400px">
                 <DirectionsRenderer
+                    @alternativeRoutes="getRoutes($event)"
                     travelMode="DRIVING"
                     :origin="startLocation"
                     :destination="endLocation"
+                    :alternativeRoute="alternative"
+                    @routeDuration="routeDuration($event)"
                 />
                 <gmap-marker
                     :key="index"
@@ -69,13 +75,13 @@
                     :position="m.position"
                 />
               </GmapMap>
-<!--              <GmapMap v-show="show" ref="mmm" :center="{lat:37.78620990752335, lng:29.0607316958271}" :zoom="12" style="width: auto; height: 400px">-->
-<!--                <gmap-marker-->
-<!--                    :key="index"-->
-<!--                    v-for="(m,index) in markers"-->
-<!--                    :position="m.position"-->
-<!--                />-->
-<!--              </GmapMap>-->
+              <!--              <GmapMap v-show="show" ref="mmm" :center="{lat:37.78620990752335, lng:29.0607316958271}" :zoom="12" style="width: auto; height: 400px">-->
+              <!--                <gmap-marker-->
+              <!--                    :key="index"-->
+              <!--                    v-for="(m,index) in markers"-->
+              <!--                    :position="m.position"-->
+              <!--                />-->
+              <!--              </GmapMap>-->
               <br>
               <form @submit.prevent="stockTransferInsert">
                 <div class="form-group">
@@ -94,9 +100,11 @@
                 <br>
                 <div class="form-group">
                   <label for="inputFromWarehouse">Select Alternative Routes</label>
-<!--                  <select id="inputFromWarehouse" @change="fromWarehouseChange($event)" class="form-control" v-model="form.from_warehouse_id">-->
-<!--                    <option :key="fromWarehouse.id" :value="fromWarehouse.id" v-for="fromWarehouse in fromWarehouses">{{ fromWarehouse.warehouse_name }}</option>-->
-<!--                  </select>-->
+                  <select id="alternativeRoutes" class="form-control" @change="routeChange($event)">
+                    <option value="">Select Route</option>
+                    <option :key="alternativeRoute.legs[0].distance.text" :value="alternativeRoute.legs[0].distance.text" v-for="alternativeRoute in route">{{ alternativeRoute.legs[0].distance.text }}</option>
+                  </select>
+<!--                  <b-form-select class="form-control" @change="routeChange(route)" :options="route" text-field="legs[0].distance.text"></b-form-select>-->
                 </div>
                 <br>
                 <div class="form-group">
@@ -128,10 +136,10 @@
                 </div>
 
                 <br>
-<!--                <div class="form-group">-->
-<!--                  <label for="inputNotes">Notes</label>-->
-<!--                  <textarea id="inputNotes" class="form-control" v-model="form.notes" rows="3"></textarea>-->
-<!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                  <label for="inputNotes">Notes</label>-->
+                <!--                  <textarea id="inputNotes" class="form-control" v-model="form.notes" rows="3"></textarea>-->
+                <!--                </div>-->
                 <button type="submit" class="btn btn-primary">Save</button>
               </form>
             </div>
@@ -163,7 +171,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-6"  v-for="warehouseItem in filtersearch" :key="warehouseItem.id">
                           <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItem.id)">
                             <div class="card" style="width:135px; margin-bottom:5px;">
-                              <img :src="'http://172.16.1.66:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
+                              <img :src="'http://172.16.2.186:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
                               <div class="card-body">
                                 <h5 class="card-title">{{ warehouseItem.product_name }}</h5>
                                 <h5 class="card-title">Code: {{ warehouseItem.product_code }}</h5>
@@ -186,28 +194,28 @@
                   </span>
                     <span class="d-none d-sm-inline-block">Product Variant</span>
                   </template>
-                 <div v-show="show">
-                   <div class="card-body">
-                     <input type="text" v-model="searchVariantTerm" class="form-control" style="width:660px; margin-bottom:10px;" placeholder="Search Product Variant Sku No">
-                     <div class="row">
-                       <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="width:135px;" v-for="warehouseItemVariant in filtervariantsearch" :key="warehouseItemVariant.id">
-                         <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItemVariant.product_id,warehouseItemVariant.vid)">
-                           <div class="card" style="width:135px; margin-bottom:5px;">
-                             <img :src="'http://172.16.1.66:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
-                             <div class="card-body">
-                               <h5 class="card-title">{{ warehouseItemVariant.product_name }}</h5>
-                               <h5 class="card-title">Code: {{ warehouseItemVariant.product_code }}</h5>
-                               <h5 class="card-title">Sku: {{ warehouseItemVariant.sku_no }}</h5>
-                               <h5 class="card-title">Unit: {{ warehouseItemVariant.unit_name }} {{ warehouseItemVariant.unit_symbol }}</h5>
-                               <span v-if="warehouseItemVariant.variant_quantity > '0'" class="badge badge-success">Available: {{ warehouseItemVariant.variant_quantity }}</span>
-                               <span v-else="" class="badge badge-danger">Stock Out</span>
-                             </div>
-                           </div>
-                         </button>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
+                  <div v-show="show">
+                    <div class="card-body">
+                      <input type="text" v-model="searchVariantTerm" class="form-control" style="width:660px; margin-bottom:10px;" placeholder="Search Product Variant Sku No">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="width:135px;" v-for="warehouseItemVariant in filtervariantsearch" :key="warehouseItemVariant.id">
+                          <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItemVariant.product_id,warehouseItemVariant.vid)">
+                            <div class="card" style="width:135px; margin-bottom:5px;">
+                              <img :src="'http://172.16.2.186:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ warehouseItemVariant.product_name }}</h5>
+                                <h5 class="card-title">Code: {{ warehouseItemVariant.product_code }}</h5>
+                                <h5 class="card-title">Sku: {{ warehouseItemVariant.sku_no }}</h5>
+                                <h5 class="card-title">Unit: {{ warehouseItemVariant.unit_name }} {{ warehouseItemVariant.unit_symbol }}</h5>
+                                <span v-if="warehouseItemVariant.variant_quantity > '0'" class="badge badge-success">Available: {{ warehouseItemVariant.variant_quantity }}</span>
+                                <span v-else="" class="badge badge-danger">Stock Out</span>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </b-tab>
               </b-tabs>
             </div>
@@ -231,10 +239,11 @@ import CKEditor from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import DirectionsRenderer from "./DirectionsRenderer";
 
-var rad = function(x) {
-  return x * Math.PI / 180;
-};
+// var rad = function(x) {
+//   return x * Math.PI / 180;
+// };
 export default {
+
   name:'admin-stock-transfer',
   components: { ckeditor: CKEditor.component, Layout,DirectionsRenderer, },
   created(){
@@ -242,7 +251,7 @@ export default {
     // if(!User.loggedIn()){
     //   this.$router.push({name: '/admin/login'})
     // }
-    axios.get('/api/admin/category/')
+    axios.get('/api/category/')
         .then(({data}) => (this.categories = data))
     this.allProduct();
     this.fromWarehouse();
@@ -255,8 +264,10 @@ export default {
       this.allStockTransferCart()
     })
   },
+
   data(){
     return{
+      route:[],
       form:{
         from_warehouse_id: '',
         to_warehouse_id: '',
@@ -264,6 +275,8 @@ export default {
         notes: '',
         start_transfer_date: moment().format("YYYY-MM-DD"),
         finish_transfer_date: moment().format("YYYY-MM-DD"),
+        routeKm: null,
+        routeDuration: null,
       },
       products:[],
       searchTerm:'',
@@ -279,6 +292,7 @@ export default {
       stockTransferCarts:[],
       // markers:[],
       km: null,
+      duration: null,
       show: false,
       editor: ClassicEditor,
       center: { lat: 45.508, lng: -73.587 },
@@ -287,6 +301,7 @@ export default {
       places: [],
       startLocation: null,
       endLocation: null,
+      alternative: {},
     }
   },
   computed:{
@@ -318,11 +333,15 @@ export default {
     getKm(){
       return this.km;
     },
+    getDuration(){
+      return this.duration;
+    },
   },
   methods:{
     setPlace(place) {
       this.currentPlace = place;
     },
+    // Add Marker
     addMarker(index,marker) {
       // const marker = {
       //   lat: this.currentPlace.geometry.location.lat(),
@@ -331,34 +350,55 @@ export default {
       if (index === 0) this.startLocation = marker;
       if (index === 1) this.endLocation = marker;
       this.center = marker;
+
+
+      // eslint-disable-next-line no-console
+      // console.log(this.route)
     },
+    // Stock Transfer Insert
     stockTransferInsert(){
-      axios.post('http://172.16.1.66:8001/api/store/stock-transfer',this.form)
-          .then(() => {
-            this.$router.push({ name: 'stock-transfer-list'})
-            Notification.success()
-            this.form.from_warehouse_id = "";
-            this.form.to_warehouse_id = "";
-            this.form.supplier_id = "";
-            this.form.notes = "";
-            this.form.start_transfer_date = "";
-            this.form.finish_transfer_date = "";
-          })
+            this.form.routeDuration = this.duration;
+            this.form.routeKm = this.km;
+            axios.post('http://172.16.2.186:8001/api/store/stock-transfer',this.form)
+                .then(() => {
+                  this.$router.push({ name: 'stock-transfer-list'})
+                  Notification.success()
+                  this.form.from_warehouse_id = "";
+                  this.form.to_warehouse_id = "";
+                  this.form.supplier_id = "";
+                  this.form.notes = "";
+                  this.form.start_transfer_date = "";
+                  this.form.finish_transfer_date = "";
+                })
           .catch(error => this.errors = error.response.data.errors)
     },
+    // All Out Of Stock
     allOutOfStock(){
-      axios.get('http://172.16.1.66:8001/api/get-out-of-stock')
+      axios.get('http://172.16.2.186:8001/api/get-out-of-stock')
           .then(({data}) => (this.outOfStocks = data))
           .catch()
     },
+    // Routes
+    getRoutes(item){
+      this.route = item
+      // eslint-disable-next-line no-console
+      // console.log(this.route)
+
+    },
+    routeDuration(event){
+      // console.log(event);
+      this.duration = event;
+    },
+    // All Stock Transfer Cart
     allStockTransferCart(){
-      axios.get('http://172.16.1.66:8001/api/stocktransfer/cart/')
+      axios.get('http://172.16.2.186:8001/api/stocktransfer/cart/')
           .then(({data}) => (this.stockTransferCarts = data))
           .catch()
     },
+    // Add Stock Transfer Cart
     AddToStockTransferCart(id,variant_id = null){
       let warehouse_id = this.form.from_warehouse_id;
-      axios.get('http://172.16.1.66:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
+      axios.get('http://172.16.2.186:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -372,13 +412,15 @@ export default {
           })
           .catch()
     },
+    // Select Warehouse Item Variant
     selectedWarehouseItemVariant(id){
-      axios.get('http://172.16.1.66:8001/api/select-from-warehouse-item-variant/'+id)
+      axios.get('http://172.16.2.186:8001/api/select-from-warehouse-item-variant/'+id)
           .then(({data}) => (this.warehouseItemVariants = data))
           .catch()
     },
+    // Remove Item Cart
     removeItem(id){
-      axios.get('http://172.16.1.66:8001/api/remove/stocktransfer/cart/'+id)
+      axios.get('http://172.16.2.186:8001/api/remove/stocktransfer/cart/'+id)
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -386,9 +428,10 @@ export default {
           })
           .catch()
     },
+    // Item Cart ++
     increment(id){
       let warehouse_id = this.form.from_warehouse_id;
-      axios.get('http://172.16.1.66:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
+      axios.get('http://172.16.2.186:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -403,8 +446,9 @@ export default {
           })
           .catch()
     },
+    // Item Cart --
     decrement(id){
-      axios.get('http://172.16.1.66:8001/api/decrement/stocktransfer/cart/'+id)
+      axios.get('http://172.16.2.186:8001/api/decrement/stocktransfer/cart/'+id)
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -412,24 +456,27 @@ export default {
           })
           .catch()
     },
+    // All Supplier
     allSupplier(){
-      axios.get('http://172.16.1.66:8001/api/admin/supplier')
+        axios.get('http://172.16.2.186:8001/api/supplier')
           .then(({data}) => (this.suppliers = data))
           .catch()
     },
+    // From Warehouse
     fromWarehouse(){
-      axios.get('http://172.16.1.66:8001/api/warehouse')
+      axios.get('http://172.16.2.186:8001/api/warehouse')
           .then(({data}) => (this.fromWarehouses = data))
           .catch()
     },
+    // Change From Warehouse
     fromWarehouseChange(event){
       let id = event.target.value;
       if (id != null) {
         this.show = true;
-        axios.get('http://172.16.1.66:8001/api/select-from-warehouse/'+id)
+        axios.get('http://172.16.2.186:8001/api/select-from-warehouse/'+id)
             .then(({data}) => (this.toWarehouses = data))
             .catch()
-        axios.get('http://172.16.1.66:8001/api/from/warehouse/change/'+id)
+        axios.get('http://172.16.2.186:8001/api/from/warehouse/change/'+id)
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -441,7 +488,7 @@ export default {
 
               if(this.markers.length >1 ){
                 this.markers.splice(0);
-                axios.get('http://172.16.1.66:8001/api/from/warehouse/change/'+id)
+                axios.get('http://172.16.2.186:8001/api/from/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -453,7 +500,7 @@ export default {
 
                     });
               }else{
-                axios.get('http://172.16.1.66:8001/api/from/warehouse/change/'+id)
+                axios.get('http://172.16.2.186:8001/api/from/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -474,10 +521,12 @@ export default {
         Notification.selectFromWarehouse()
       }
     },
+    // Change To Warehouse
     toWarehouseChange(event){
+      this.markers.splice(0);
       let id = event.target.value;
       if (id != null) {
-        axios.get('http://172.16.1.66:8001/api/to/warehouse/change/'+id)
+        axios.get('http://172.16.2.186:8001/api/to/warehouse/change/'+id)
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -489,7 +538,7 @@ export default {
               this.distanceCalculate()
               if(this.markers.length >2 ){
                 this.markers.splice(1);
-                axios.get('http://172.16.1.66:8001/api/to/warehouse/change/'+id)
+                axios.get('http://172.16.2.186:8001/api/to/warehouse/change/'+id)
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -508,9 +557,16 @@ export default {
         Notification.selectToWarehouse()
       }
     },
+    // Route Change
+    routeChange(event){
+      this.alternative = event.target.value;
+      this.km = event.target.value;
+      this.markers.splice(0);
+    },
+    // Select Warehouse Item
     selectedWarehouseItem(id){
       if (id != null) {
-        axios.get('http://172.16.1.66:8001/api/select-from-warehouse-item/'+id)
+        axios.get('http://172.16.2.186:8001/api/select-from-warehouse-item/'+id)
             .then(({data}) => (this.warehouseItems = data))
             .catch()
       } else {
@@ -518,26 +574,27 @@ export default {
       }
 
     },
+    // All Product
     allProduct(){
-      axios.get('http://172.16.1.66:8001/api/product')
+      axios.get('http://172.16.2.186:8001/api/product')
           .then(({data}) => (this.products = data))
           .catch()
     },
-    subProduct(id){
-      axios.get('http://172.16.1.66:8001/api/getting/product/'+id)
-          .then(({data}) => (this.getProducts = data))
-    },
-    distanceCalculate(){
-      let R = 6378137; // Earth’s mean radius in meter
-      let dLat = rad(this.markers[1].position.lat - this.markers[0].position.lat);
-      let dLong = rad(this.markers[1].position.lng - this.markers[0].position.lng);
-      let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos(rad(this.markers[0].position.lat)) * Math.cos(rad(this.markers[1].position.lat)) *
-          Math.sin(dLong / 2) * Math.sin(dLong / 2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = R * c;
-      this.km = parseFloat(d.toPrecision(6) / 1000);
-    },
+    // subProduct(id){
+    //   axios.get('http://172.16.2.186:8001/api/getting/product/'+id)
+    //       .then(({data}) => (this.getProducts = data))
+    // },
+    // distanceCalculate(){
+    //   let R = 6378137; // Earth’s mean radius in meter
+    //   let dLat = rad(this.markers[1].position.lat - this.markers[0].position.lat);
+    //   let dLong = rad(this.markers[1].position.lng - this.markers[0].position.lng);
+    //   let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //       Math.cos(rad(this.markers[0].position.lat)) * Math.cos(rad(this.markers[1].position.lat)) *
+    //       Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    //   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //   let d = R * c;
+    //   this.km = parseFloat(d.toPrecision(6) / 1000);
+    // },
 
   },
 

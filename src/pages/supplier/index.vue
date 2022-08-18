@@ -147,7 +147,7 @@ export default {
       this.currentPage = 1;
     },
     allSupplier(){
-      axios.get('http://172.16.1.66:8001/api/supplier')
+      axios.get('http://172.16.2.186:8001/api/supplier')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -163,7 +163,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://172.16.1.66:8001/api/supplier/'+id)
+          axios.delete('http://172.16.2.186:8001/api/supplier/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

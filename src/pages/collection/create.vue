@@ -77,7 +77,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://172.16.1.66:8001/api/collection/')
+    axios.get('http://172.16.2.186:8001/api/collection/')
         .then(({data}) => (this.collections = data))
   },
 
@@ -113,7 +113,7 @@ export default {
       }
     },
     collectionInsert(){
-      axios.post('http://172.16.1.66:8001/api/collection',this.form)
+      axios.post('http://172.16.2.186:8001/api/collection',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-collection-list'})
             Notification.success()

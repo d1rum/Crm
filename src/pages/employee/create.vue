@@ -102,7 +102,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://172.16.1.66:8001/api/employee/')
+    axios.get('http://172.16.2.186:8001/api/employee/')
         .then(({data}) => (this.employees = data))
   },
 
@@ -144,7 +144,7 @@ export default {
       }
     },
     employeeInsert(){
-      axios.post('http://172.16.1.66:8001/api/employee',this.form)
+      axios.post('http://172.16.2.186:8001/api/employee',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-employee-list'})
             Notification.success()

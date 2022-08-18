@@ -12,8 +12,8 @@ export default {
     }
     this.allUserNotification();
     this.allUserNotification();
-    this.timerNotification = setInterval(this.allUserNotification, 60000);
-    this.timerNotificationCount = setInterval(this.allUserNotification, 60000);
+    // this.timerNotification = setInterval(this.allUserNotification, 60000);
+    // this.timerNotificationCount = setInterval(this.allUserNotification, 60000);
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
       this.allUserNotification()
@@ -32,7 +32,7 @@ export default {
     allUserNotification(){
       // eslint-disable-next-line no-undef
       let userId = User.userId();
-      axios.get('http://172.16.1.66:8001/api/user/notification/'+userId)
+      axios.get('http://172.16.2.186:8001/api/user/notification/'+userId)
           .then(({data}) => (this.notifications = data))
           .catch()
     },

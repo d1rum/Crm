@@ -73,7 +73,7 @@ export default {
     let id = this.$route.params.id
     // eslint-disable-next-line no-console
     console.log(id);
-    axios.get('http://172.16.1.66:8001/api/slider/'+id)
+    axios.get('http://172.16.2.186:8001/api/slider/'+id)
         .then(({data}) => (this.form = data))
         // eslint-disable-next-line no-console
         .catch()
@@ -111,7 +111,7 @@ export default {
     },
     sliderUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://172.16.1.66:8001/api/slider/'+id,this.form)
+      axios.patch('http://172.16.2.186:8001/api/slider/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-slider-list'})
             Notification.success()

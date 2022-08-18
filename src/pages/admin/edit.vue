@@ -97,7 +97,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://172.16.1.66:8001/api/admin/'+id)
+    axios.get('http://172.16.2.186:8001/api/admin/'+id)
         .then(({data}) => {
           // eslint-disable-next-line no-console
           console.log(data)
@@ -107,7 +107,7 @@ export default {
             this.form.password = data.password
         })
         .catch()
-    axios.get('http://172.16.1.66:8001/api/role/')
+    axios.get('http://172.16.2.186:8001/api/role/')
         .then(({data}) => (this.roles = data))
   },
 
@@ -151,7 +151,7 @@ export default {
     },
     adminUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://172.16.1.66:8001/api/admin/'+id,this.form)
+      axios.patch('http://172.16.2.186:8001/api/admin/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-list'})
             Notification.success()

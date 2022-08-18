@@ -138,7 +138,7 @@ export default {
   },
   methods:{
     login(){
-      axios.post('http://172.16.1.66:8001/api/auth/admin/login',this.form)
+      axios.post('http://172.16.2.186:8001/api/auth/admin/login',this.form)
           .then(res => {
             // eslint-disable-next-line no-console
             User.responseAfterLogin(res)

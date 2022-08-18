@@ -218,7 +218,7 @@ export default {
       this.editModalDisplay =false;
     },
     addColor(){
-      this.$http.post('http://172.16.1.66:8001/api/color',this.form)
+      this.$http.post('http://172.16.2.186:8001/api/color',this.form)
           // eslint-disable-next-line no-console
           .then((data) => {console.log(data)
             this.editModalDisplay = false;
@@ -229,7 +229,7 @@ export default {
 
     },
     getColorList(){
-      this.$http.get('http://172.16.1.66:8001/api/color')
+      this.$http.get('http://172.16.2.186:8001/api/color')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -239,7 +239,7 @@ export default {
     },
     editColor(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://172.16.1.66:8001/api/color/'+id,this.editForm)
+      this.$http.patch('http://172.16.2.186:8001/api/color/'+id,this.editForm)
           .then((res) => {
             // eslint-disable-next-line no-console
             console.log(res);
@@ -261,7 +261,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://172.16.1.66:8001/api/color/'+id)
+          this.$http.delete('http://172.16.2.186:8001/api/color/'+id)
               .then(() => {
                 this.getColorList();
                 this.categories = this.categories.filter(role => {

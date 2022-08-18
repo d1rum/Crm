@@ -59,7 +59,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://172.16.1.66:8001/api/faq/'+id)
+    axios.get('http://172.16.2.186:8001/api/faq/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -81,7 +81,7 @@ export default {
   methods:{
     faqUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://172.16.1.66:8001/api/faq/'+id,this.form)
+      axios.patch('http://172.16.2.186:8001/api/faq/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-faq-list'})
             Notification.success()

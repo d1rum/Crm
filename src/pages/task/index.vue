@@ -294,7 +294,7 @@ export default {
   },
   methods:{
     completedTask(id){
-      this.$http.get('http://172.16.1.66:8001/api/completed-user-task/'+id)
+      this.$http.get('http://172.16.2.186:8001/api/completed-user-task/'+id)
           .then(() => {
             this.getTaskList()
             // eslint-disable-next-line no-console
@@ -314,7 +314,7 @@ export default {
     },
     getTaskList() {
       let id = localStorage.getItem('user_id')
-      this.$http.get('http://172.16.1.66:8001/api/get-user-task/'+id)
+      this.$http.get('http://172.16.2.186:8001/api/get-user-task/'+id)
           .then((res) => {this.items = res.data
               // eslint-disable-next-line no-console
               console.log(this.items)
@@ -344,7 +344,7 @@ export default {
       this.form.task_user_id =localStorage.getItem('user_id');
 
 
-      this.$http.post('http://172.16.1.66:8001/api/task',this.form)
+      this.$http.post('http://172.16.2.186:8001/api/task',this.form)
           // eslint-disable-next-line no-console
           .then((res) => {console.log(res)
             this.displayModal = false;
@@ -359,7 +359,7 @@ export default {
     editTask(id){
       this.editForm.user_id = localStorage.getItem('user_id');
       // eslint-disable-next-line no-console
-      this.$http.patch('http://172.16.1.66:8001/api/task/'+id,this.editForm)
+      this.$http.patch('http://172.16.2.186:8001/api/task/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getTaskList();
@@ -380,7 +380,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://172.16.1.66:8001/api/task/'+id)
+          this.$http.delete('http://172.16.2.186:8001/api/task/'+id)
               .then(() => {
                 this.getTaskList();
                 this.categories = this.categories.filter(role => {
