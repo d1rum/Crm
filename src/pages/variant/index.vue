@@ -45,7 +45,7 @@
                     </template>
 
                     <template v-slot:cell(variantImage)="{item}">
-                      <img :src="'http://172.16.2.186:8001/'+item.variant_image" id="variant_photo">
+                      <img :src="'http://192.168.197.37:8001/'+item.variant_image" id="variant_photo">
                     </template>
 
                   </b-table>
@@ -151,7 +151,7 @@ export default {
       this.currentPage = 1;
     },
     allVariant(){
-      axios.get('http://172.16.2.186:8001/api/variant')
+      axios.get('http://192.168.197.37:8001/api/variant')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -167,7 +167,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://172.16.2.186:8001/api/variant/'+id)
+          axios.delete('http://192.168.197.37:8001/api/variant/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

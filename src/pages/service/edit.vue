@@ -71,7 +71,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://172.16.2.186:8001/api/service/'+id)
+    axios.get('http://192.168.197.37:8001/api/service/'+id)
         .then(({data}) => (this.form = data))
         .catch()
 
@@ -110,7 +110,7 @@ export default {
     },
     serviceUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://172.16.2.186:8001/api/service/'+id,this.form)
+      axios.patch('http://192.168.197.37:8001/api/service/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-service-list'})
             Notification.success()

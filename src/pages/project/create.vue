@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://172.16.2.186:8001/api/project/')
+    axios.get('http://192.168.197.37:8001/api/project/')
         .then(({data}) => (this.projects = data))
   },
 
@@ -105,7 +105,7 @@ export default {
       }
     },
     projectInsert(){
-      axios.post('http://172.16.2.186:8001/api/project',this.form)
+      axios.post('http://192.168.197.37:8001/api/project',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-project-list'})
             Notification.success()

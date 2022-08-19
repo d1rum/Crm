@@ -281,7 +281,7 @@ export default {
       this.form.payment_seq = null;
     },
     addPaymentMethod(){
-      this.$http.post('http://172.16.2.186:8001/api/payment-method',this.form)
+      this.$http.post('http://192.168.197.37:8001/api/payment-method',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getPaymentMethodList();
@@ -291,7 +291,7 @@ export default {
 
     },
     getPaymentMethodList(){
-      this.$http.get('http://172.16.2.186:8001/api/payment-method')
+      this.$http.get('http://192.168.197.37:8001/api/payment-method')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -301,7 +301,7 @@ export default {
     },
     editPaymentMethod(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://172.16.2.186:8001/api/payment-method/'+id,this.editForm)
+      this.$http.patch('http://192.168.197.37:8001/api/payment-method/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getPaymentMethodList();
@@ -322,7 +322,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://172.16.2.186:8001/api/payment-method/'+id)
+          this.$http.delete('http://192.168.197.37:8001/api/payment-method/'+id)
               .then(() => {
                 this.getPaymentMethodList();
                 this.categories = this.categories.filter(role => {

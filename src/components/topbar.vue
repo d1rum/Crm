@@ -32,7 +32,7 @@ export default {
     allUserNotification(){
       // eslint-disable-next-line no-undef
       let userId = User.userId();
-      axios.get('http://172.16.2.186:8001/api/user/notification/'+userId)
+      axios.get('http://192.168.197.37:8001/api/user/notification/'+userId)
           .then(({data}) => (this.notifications = data))
           .catch()
     },

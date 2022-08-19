@@ -225,7 +225,7 @@ export default {
       this.form.subcategory_name = null;
     },
     getCategoryList() {
-      this.$http.get('http://172.16.2.186:8001/api/category/')
+      this.$http.get('http://192.168.197.37:8001/api/category/')
           .then((res) => {this.categories = res.data
             // eslint-disable-next-line no-console
           })
@@ -249,7 +249,7 @@ export default {
     addSubCategory(){
       // eslint-disable-next-line no-console
 
-      this.$http.post('http://172.16.2.186:8001/api/subcategory',this.form)
+      this.$http.post('http://192.168.197.37:8001/api/subcategory',this.form)
           // eslint-disable-next-line no-console
           .then((res) => {console.log(res)
             this.displayModal = false;
@@ -262,7 +262,7 @@ export default {
     },
     getSubCategoryList(){
 
-      this.$http.get('http://172.16.2.186:8001/api/subcategory')
+      this.$http.get('http://192.168.197.37:8001/api/subcategory')
           .then((res) => {
             this.items = res.data;
 
@@ -271,7 +271,7 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://172.16.2.186:8001/api/subcategory/'+id,this.editForm)
+      this.$http.patch('http://192.168.197.37:8001/api/subcategory/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getSubCategoryList();
@@ -292,7 +292,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://172.16.2.186:8001/api/subcategory/'+id)
+          this.$http.delete('http://192.168.197.37:8001/api/subcategory/'+id)
               .then(() => {
                 this.getSubCategoryList();
                 this.categories = this.categories.filter(role => {

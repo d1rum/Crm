@@ -104,7 +104,7 @@
                       </div>
                     </template>
                     <template v-slot:cell(shipping_company_image)="{item}">
-                      <img id="product_image" :src="'http://172.16.2.186:8001'+'/'+item.shipping_company_image">
+                      <img id="product_image" :src="'http://192.168.197.37:8001'+'/'+item.shipping_company_image">
                     </template>
 
                     <template v-slot:cell(actions)="{item}">
@@ -248,7 +248,7 @@ export default {
       this.form.shipping_company_id = null;
     },
     getShippingCompaniesList(){
-      this.$http.get('http://172.16.2.186:8001/api/shipping-company/')
+      this.$http.get('http://192.168.197.37:8001/api/shipping-company/')
           .then(({data}) => {this.shippingCompanies = data;
             // eslint-disable-next-line no-console
             console.log(data);}).catch()
@@ -291,7 +291,7 @@ export default {
       this.editModalDisplay =false;
     },
     addPostType(){
-      this.$http.post('http://172.16.2.186:8001/api/shipping-company-post-type',this.form)
+      this.$http.post('http://192.168.197.37:8001/api/shipping-company-post-type',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getPostTypeList();
@@ -301,7 +301,7 @@ export default {
 
     },
     getPostTypeList(){
-      this.$http.get('http://172.16.2.186:8001/api/shipping-company-post-type')
+      this.$http.get('http://192.168.197.37:8001/api/shipping-company-post-type')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -312,7 +312,7 @@ export default {
     },
     editPostType(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://172.16.2.186:8001/api/shipping-company-post-type/'+id,this.editForm)
+      this.$http.patch('http://192.168.197.37:8001/api/shipping-company-post-type/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getPostTypeList();
@@ -333,7 +333,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://172.16.2.186:8001/api/shipping-company-post-type/'+id)
+          this.$http.delete('http://192.168.197.37:8001/api/shipping-company-post-type/'+id)
               .then(() => {
                 this.getPostTypeList();
                 this.categories = this.categories.filter(role => {

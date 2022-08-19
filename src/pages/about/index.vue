@@ -55,7 +55,7 @@
                     </template>
 
                     <template v-slot:cell(aboutImage)="{item}">
-                      <img :src="'http://172.16.2.186:8001/'+item.about_us_image" id="about_photo">
+                      <img :src="'http://192.168.197.37:8001/'+item.about_us_image" id="about_photo">
                     </template>
 
                   </b-table>
@@ -159,7 +159,7 @@ export default {
       this.currentPage = 1;
     },
     allAboutUs(){
-      axios.get('http://172.16.2.186:8001/api/about-us')
+      axios.get('http://192.168.197.37:8001/api/about-us')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -175,7 +175,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://172.16.2.186:8001/api/about-us/'+id)
+          axios.delete('http://192.168.197.37:8001/api/about-us/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id
