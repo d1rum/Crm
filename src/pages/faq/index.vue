@@ -155,7 +155,7 @@ export default {
       this.currentPage = 1;
     },
     allFaq(){
-      axios.get('http://192.168.197.37:8001/api/faq')
+      axios.get('http://192.168.1.37:8001/api/faq')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -171,7 +171,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.197.37:8001/api/faq/'+id)
+          axios.delete('http://192.168.1.37:8001/api/faq/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

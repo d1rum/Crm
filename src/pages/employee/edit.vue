@@ -103,7 +103,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.197.37:8001/api/employee/'+id)
+    axios.get('http://192.168.1.37:8001/api/employee/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -147,7 +147,7 @@ export default {
     },
     employeeUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.197.37:8001/api/employee/'+id,this.form)
+      axios.patch('http://192.168.1.37:8001/api/employee/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-employee-list'})
             Notification.success()

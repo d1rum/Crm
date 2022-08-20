@@ -175,7 +175,7 @@ export default {
   methods:{
     panelSettings(){
       let id = 0;
-      axios.get('http://192.168.197.37:8001/api/panel-settings/'+id)
+      axios.get('http://192.168.1.37:8001/api/panel-settings/'+id)
           .then(({data}) => (this.form = data))
           .catch()
     },
@@ -204,7 +204,7 @@ export default {
       }
     },
     panelSettingsUpdate(){
-      axios.post('http://192.168.197.37:8001/api/panel-settings/',this.form)
+      axios.post('http://192.168.1.37:8001/api/panel-settings/',this.form)
           .then(() => {
             this.$router.push({ name: 'admin'})
             // eslint-disable-next-line no-undef

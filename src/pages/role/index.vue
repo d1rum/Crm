@@ -223,7 +223,7 @@ export default {
       this.editModalDisplay =false;
     },
     addRole(){
-      this.$http.post('http://192.168.197.37:8001/api/role',this.form)
+      this.$http.post('http://192.168.1.37:8001/api/role',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getRoleList();
@@ -233,7 +233,7 @@ export default {
 
     },
     getRoleList(){
-      this.$http.get('http://192.168.197.37:8001/api/role')
+      this.$http.get('http://192.168.1.37:8001/api/role')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -243,7 +243,7 @@ export default {
     },
     editRole(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.197.37:8001/api/role/'+id,this.editForm)
+      this.$http.patch('http://192.168.1.37:8001/api/role/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getRoleList();
@@ -264,7 +264,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.197.37:8001/api/role/'+id)
+          this.$http.delete('http://192.168.1.37:8001/api/role/'+id)
               .then(() => {
                 this.getRoleList();
                 this.categories = this.categories.filter(role => {

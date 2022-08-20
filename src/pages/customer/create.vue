@@ -84,7 +84,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.197.37:8001/api/customer/')
+    axios.get('http://192.168.1.37:8001/api/customer/')
         .then(({data}) => (this.customers = data))
   },
 
@@ -110,7 +110,7 @@ export default {
 
   methods:{
     customerInsert(){
-      axios.post('http://192.168.197.37:8001/api/customer',this.form)
+      axios.post('http://192.168.1.37:8001/api/customer',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-customer-list'})
             Notification.success()

@@ -79,7 +79,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.197.37:8001/api/campaign/')
+    axios.get('http://192.168.1.37:8001/api/campaign/')
         .then(({data}) => (this.campaigns = data))
   },
 
@@ -116,7 +116,7 @@ export default {
       }
     },
     campaignInsert(){
-      axios.post('http://192.168.197.37:8001/api/campaign',this.form)
+      axios.post('http://192.168.1.37:8001/api/campaign',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-campaign-list'})
             Notification.success()

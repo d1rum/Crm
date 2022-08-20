@@ -66,7 +66,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.197.37:8001/api/about-us/')
+    axios.get('http://192.168.1.37:8001/api/about-us/')
         .then(({data}) => (this.abouts = data))
   },
 
@@ -100,7 +100,7 @@ export default {
       }
     },
     aboutUsInsert(){
-      axios.post('http://192.168.197.37:8001/api/about-us',this.form)
+      axios.post('http://192.168.1.37:8001/api/about-us',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-about-list'})
             Notification.success()

@@ -17,7 +17,7 @@
                       <div class="fill"></div>
                     </div>
                     <div class="counter">0%</div>
-                    <button id="customLoad">Click to load</button>
+                    <button id="customLoad">Start Database Backup</button>
                   </div>
                 <div class="output">
                   <span class="fa fa-check"></span>
@@ -84,7 +84,7 @@ export default {
         a = a+1;
         if (a === 101){
           clearInterval(run);
-          axios.get('http://192.168.197.37:8001/api/backup')
+          axios.get('http://192.168.1.37:8001/api/backup')
               .then((res) => {
                 if (res.data === true){
                   // eslint-disable-next-line no-undef
@@ -113,7 +113,7 @@ export default {
   },
   methods:{
     // backup(){
-    //   axios.get('http://192.168.197.37:8001/api/backup')
+    //   axios.get('http://192.168.1.37:8001/api/backup')
     //       .then((res) => {
     //         if (res.data === true){
     //           // eslint-disable-next-line no-undef
@@ -140,12 +140,12 @@ export default {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: #1b1919;
+  background: linear-gradient(45deg,#bdc3c7  ,#2c3e50);
 }
 .custom-container{
   width: 70%;
   padding: 50px 0;
-  background: #1b1919;
+  background: linear-gradient(45deg,#2c3e50  ,#bdc3c7);
   box-shadow: 0 0 30px rgba(0,0,0,0.8);
   border-radius: 20px;
   text-align: center;
@@ -161,13 +161,13 @@ export default {
 .fill{
   height: 100%;
   width: 1%;
-  background: linear-gradient(45deg,#00ccff,#d400d4);
+  background: linear-gradient(45deg,#56ab2f   ,#a8e063);
 }
 .counter{
   font-size: 40px;
   font-family: monospace;
   font-weight: 800;
-  color: #00ccff;
+  color: #a8e063;
   padding: 5px 0;
 }
 #customLoad{
@@ -181,13 +181,13 @@ export default {
   padding: 5px 10px;
   cursor: pointer;
   outline: none;
-  border: 2px solid #00ccff;
+  border: 2px solid #a8e063;
   border-radius: 50px;
 }
 .output{
   width: 50%;
   padding: 30px 0;
-  background: #1b1919;
+  background: linear-gradient(45deg,#2c3e50  ,#bdc3c7);
   border-radius: 5px;
   box-shadow: 0 0 30px rgba(0,0,0,0.8);
   text-align: center;
@@ -196,10 +196,10 @@ export default {
 .output .fa-check{
   height: 150px;
   width: 150px;
-  border: 5px solid #00ccff;
+  border: 5px solid #a8e063 ;
   line-height: 150px;
   border-radius: 50%;
-  color: #00ccff;
+  color: #a8e063 ;
   font-size: 85px;
   margin-bottom: 30px;
   animation: animate 1s ease;
@@ -226,7 +226,7 @@ export default {
   font-size: 40px;
   font-weight: 600;
   font-family: sans-serif;
-  color: #00ccff;
+  color: #a8e063 ;
   letter-spacing: 1px;
 }
 </style>

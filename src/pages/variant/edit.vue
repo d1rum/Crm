@@ -79,14 +79,14 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.197.37:8001/api/variant/'+id)
+    axios.get('http://192.168.1.37:8001/api/variant/'+id)
         .then(({data}) => (this.form = data))
         .catch()
-    axios.get('http://192.168.197.37:8001/api/product/')
+    axios.get('http://192.168.1.37:8001/api/product/')
         .then(({data}) => (this.products = data))
-    axios.get('http://192.168.197.37:8001/api/size/')
+    axios.get('http://192.168.1.37:8001/api/size/')
         .then(({data}) => (this.sizes = data))
-    axios.get('http://192.168.197.37:8001/api/color/')
+    axios.get('http://192.168.1.37:8001/api/color/')
         .then(({data}) => (this.colors = data))
 
   },
@@ -126,7 +126,7 @@ export default {
     },
     variantUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.197.37:8001/api/variant/'+id,this.form)
+      axios.patch('http://192.168.1.37:8001/api/variant/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-variant-list'})
             Notification.success()

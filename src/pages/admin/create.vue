@@ -96,7 +96,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.197.37:8001/api/admin/role/')
+    axios.get('http://192.168.1.37:8001/api/admin/role/')
         .then(({data}) => (this.roles = data))
   },
 
@@ -138,7 +138,7 @@ export default {
       }
     },
     adminInsert(){
-      axios.post('http://192.168.197.37:8001/api/admin',this.form)
+      axios.post('http://192.168.1.37:8001/api/admin',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-list'})
             Notification.success()
