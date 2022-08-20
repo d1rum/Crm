@@ -1,4 +1,5 @@
 
+
 <template>
   <Layout>
     <PageHeader :items="item" :title="title"></PageHeader>
@@ -53,21 +54,19 @@
 
 
                     <template v-slot:cell(status)="{item}">
-                      <b-badge v-if="item.status === 0" class="btn btn-primary">Request Created</b-badge>
-                      <b-badge v-if="item.status === 1" class="btn btn-primary">Products are being prepared</b-badge>
-                      <b-badge v-if="item.status === 2" class="btn btn-primary">In the process of loading on the truck</b-badge>
-                      <b-badge v-if="item.status === 3" class="btn btn-primary">The truck is on the road</b-badge>
-                      <b-badge v-if="item.status === 4" class="btn btn-primary">The truck has arrived at the warehouse</b-badge>
-                      <b-badge v-if="item.status === 5" class="btn btn-primary">The products have been delivered to the warehouse.</b-badge>
-
-                      <b-badge v-if="item.status === 6" class="btn btn-danger">Return request created</b-badge>
-                      <b-badge v-if="item.status === 7" class="btn btn-success">Preparing products to be returned</b-badge>
-                      <b-badge v-if="item.status === 8" class="btn btn-primary">Reloading products to the truck</b-badge>
-                      <b-badge v-if="item.status === 9" class="btn btn-danger">The truck of the products to be returned is on the way</b-badge>
-                      <b-badge v-if="item.status === 10" class="btn btn-danger">The truck of the products to be returned has arrived at the warehouse</b-badge>
-                      <b-badge v-if="item.status === 11" class="btn btn-danger">Return process successful</b-badge>
-
-                      <b-badge v-if="item.status === 12" class="btn btn-primary">Stock Transfer Canceled</b-badge>
+                      <b-badge v-if="item.status === 0" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 1" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 2" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 3" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 4" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 5" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 6" class="btn btn-danger">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 7" class="btn btn-success">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 8" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 9" class="btn btn-danger">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 10" class="btn btn-danger">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 11" class="btn btn-danger">{{item.status_text[0].status_text}}</b-badge>
+                      <b-badge v-if="item.status === 12" class="btn btn-primary">{{item.status_text[0].status_text}}</b-badge>
                     </template>
 
                     <template v-slot:cell(fromWarehouse_type)="{item}">
@@ -92,19 +91,19 @@
 
 
                     <template v-slot:cell(actions)="{item}">
-                      <a v-if="item.status === 0" @click="preparedStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-secondary">Prepared</a>
-                      <a v-if="item.status === 1" @click="processStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-dark">Process</a>
-                      <a v-if="item.status === 2" @click="roadStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-primary">Road</a>
-                      <a v-if="item.status === 3" @click="arrivedStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-warning">Arrived</a>
-                      <a v-if="item.status === 4" @click="deliveredStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-success">Delivered</a>
-                      <a v-if="item.status === 5" @click="returnedRequestStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Request</a>
-                      <a v-if="item.status === 6" @click="returnedPreparedStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Prepared</a>
-                      <a v-if="item.status === 7" @click="returnedProcessStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Process</a>
-                      <a v-if="item.status === 8" @click="returnedRoadStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Road</a>
-                      <a v-if="item.status === 9" @click="returnedArrivedStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Arrived</a>
-                      <a v-if="item.status === 10" @click="returnedDeliveredStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Delivered</a>
-                      <a v-if="item.status === 0 && item.status === 1 && item.status === 2" @click="returnedDeliveredStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Delivered</a>
-                      <router-link :to="{ name: 'admin-stock-transfer-show',params:{id:item.id}}" class="btn btn-sm btn-primary">Show</router-link>
+                      <a v-if="item.status === 0" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-secondary">Prepared</a>
+                      <a v-if="item.status === 1" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-dark">Process</a>
+                      <a v-if="item.status === 2" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-primary">Road</a>
+                      <a v-if="item.status === 3" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-warning">Arrived</a>
+                      <a v-if="item.status === 4" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-success">Delivered</a>
+                      <a v-if="item.status === 5" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Request</a>
+                      <a v-if="item.status === 6" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Prepared</a>
+                      <a v-if="item.status === 7" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Process</a>
+                      <a v-if="item.status === 8" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Road</a>
+                      <a v-if="item.status === 9" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Arrived</a>
+                      <a v-if="item.status === 10" @click="statusChange(item)" style="color: white;" class="btn btn-sm btn-danger">Return Delivered</a>
+                      <a v-if="item.status === 0 || item.status === 1 || item.status === 2" @click="statusChange(item,'cancel')" style="color: white;" class="btn btn-sm btn-danger">Cancel</a>
+                      <router-link :to="{ name: 'admin-stock-transfer-show',params:{id:item.id}}" class="btn btn-sm btn-dark">Show</router-link>
                       <router-link :to="{ name: 'admin-stock-transfer-invoice',params:{id:item.id}}" class="btn btn-sm btn-success">Invoice</router-link>
 
                     </template>
@@ -149,18 +148,6 @@ export default {
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
       this.getStockTransferList()
-      this.preparedStockTransfer()
-      this.processStockTransfer()
-      this.roadStockTransfer()
-      this.arrivedStockTransfer()
-      this.deliveredStockTransfer()
-      this.returnedRequestStockTransfer()
-      this.returnedPreparedStockTransfer()
-      this.returnedProcessStockTransfer()
-      this.returnedRoadStockTransfer()
-      this.returnedArrivedStockTransfer()
-      this.returnedDeliveredStockTransfer()
-      this.cancelStockTransfer()
     });
 
 
@@ -248,6 +235,15 @@ export default {
 
   },
   methods:{
+    statusChange(item,data=null){
+      this.$http.post('http://192.168.1.37:8001/api/status/'+item.id+'/change/'+item.status,{item:data})
+          .then(({data}) => {
+            // eslint-disable-next-line no-undef
+            Reload.$emit('AfterStatus');
+
+            // eslint-disable-next-line no-console
+            console.log(data);}).catch()
+    },
     getStockTransferList(){
       this.$http.get('http://192.168.1.37:8001/api/stockTransfer/')
           .then(({data}) => {this.items = data;
@@ -256,122 +252,10 @@ export default {
 
 
     },
-
-
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    },
-
-
-    preparedStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/prepared/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    processStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/process/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    roadStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/road/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    arrivedStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/arrived/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    deliveredStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/delivered/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedRequestStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-request/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedPreparedStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-prepared/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedProcessStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-process/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedRoadStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-road/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedArrivedStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-arrived/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedDeliveredStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/returned-delivered/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    cancelStockTransfer(id){
-      this.$http.get('http://192.168.1.37:8001/api/cancel/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
     },
   },
   // created(){
@@ -387,3 +271,4 @@ export default {
   height: 50px;
 }
 </style>
+>>>>>>> Stashed changes
