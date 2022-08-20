@@ -33,7 +33,7 @@ const menuItems = [{
                 id: 6,
                 label: 'Stock Transfer List',
                 icon: 'ti-home',
-                link: ''
+                link: '/admin/stock-transfer-list'
             },
             {
                 id: 7,
@@ -466,6 +466,12 @@ const menuItems = [{
                         label: 'List',
                         icon: 'ti-home',
                         link: '/admin/warehouse-list'
+                    },
+                    {
+                        id: 2342,
+                        label: 'Item',
+                        icon: 'ti-home',
+                        link: '/admin/item-warehouse'
                     },
 
                 ]

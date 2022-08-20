@@ -8,8 +8,12 @@ import admin_logout from './views/account/logout';
 // Home
 import admin from './views/home'
 
-//stock-transfer
+// Stock Transfer
 import stocktransfer from "../pages/StockTransfer/stocktransfer";
+// Stock Transfer List
+import StocktransferList from "@/pages/StockTransfer/list";
+// Stock Transfer Show
+import StocktransferShow from "@/pages/StockTransfer/show";
 
 // Slider
 import CreateSlider from "../pages/slider/create";
@@ -55,6 +59,7 @@ import EditVariant from "../pages/variant/edit";
 import CreateWarehouse from "../pages/warehouse/create";
 import WarehouseList from "../pages/warehouse/index";
 import EditWarehouse from "../pages/warehouse/edit";
+import ItemWarehouse from "../pages/warehouse/item";
 
 // Service
 import CreateService from "../pages/service/create";
@@ -133,7 +138,7 @@ import ShipComServiceList from '../pages/shipping_company_service/index';
 
 Vue.use(Router)
 const routes = [
-    { path: '', redirect: { name: 'admin_login' }},
+    { path: '', redirect: { name: 'admin-login' }},
     {
         path: '/admin',
         component: admin,
@@ -166,6 +171,24 @@ const routes = [
         meta: {
             title: ' admin stock transfer',
         }
+    },
+    {
+        path: '/admin/stock-transfer-list',
+        name: 'admin-stock-transfer-list',
+        component: StocktransferList,
+        meta: {
+            title: ' admin stock transfer list',
+        }
+
+    },
+    {
+        path: '/admin/stock-transfer-show/:id',
+        name: 'admin-stock-transfer-show',
+        component: StocktransferShow,
+        meta: {
+            title: ' admin stock transfer show',
+        }
+
     },
     // Slider
     {
@@ -431,6 +454,14 @@ const routes = [
         component: EditWarehouse,
         meta: {
             title: ' admin edit warehouse',
+        }
+    },
+    {
+        path: '/admin/item-warehouse',
+        name: 'admin-item-warehouse',
+        component: ItemWarehouse,
+        meta: {
+            title: ' admin item warehouse',
         }
     },
     // Service
