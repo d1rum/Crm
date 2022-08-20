@@ -3,10 +3,41 @@
  * Topbar component
  */
 export default {
+<<<<<<< Updated upstream
+=======
+  created(){
+    // eslint-disable-next-line no-undef
+    if(!User.loggedIn()){
+      this.$router.push({name: 'admin-login'})
+    }
+   // this.allUserNotification();
+   //this.allUserNotification();
+    // this.timerNotification = setInterval(this.allUserNotification, 60000);
+    // this.timerNotificationCount = setInterval(this.allUserNotification, 60000);
+    // eslint-disable-next-line no-undef
+   // Reload.$on('AfterStatus',() => {
+   //   this.allUserNotification()
+   //   this.allUserNotificationCount()
+   // })
+  },
+>>>>>>> Stashed changes
   data() {
     return {};
   },
   methods: {
+<<<<<<< Updated upstream
+=======
+    allUserNotificationCount(){
+      return this.notifications.length;
+    },
+    allUserNotification(){
+      // eslint-disable-next-line no-undef
+      let userId = User.userId();
+      axios.get('http://192.168.43.131:8001/api/user/notification/'+userId)
+          .then(({data}) => (this.notifications = data))
+          .catch()
+    },
+>>>>>>> Stashed changes
     initFullScreen() {
       document.body.classList.toggle("fullscreen-enable");
       if (

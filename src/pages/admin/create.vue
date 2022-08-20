@@ -96,7 +96,11 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/admin/role/')
+=======
+    axios.get('http://192.168.43.131:8001/api/admin/role/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.roles = data))
   },
 
@@ -138,7 +142,11 @@ export default {
       }
     },
     adminInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/admin',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/admin',this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-list'})
             Notification.success()

@@ -144,7 +144,11 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-6"  v-for="warehouseItem in filtersearch" :key="warehouseItem.id">
                           <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItem.id)">
                             <div class="card" style="width:135px; margin-bottom:5px;">
+<<<<<<< Updated upstream
                               <img :src="'http://192.168.1.233:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
+=======
+                              <img :src="'http://192.168.43.131:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
+>>>>>>> Stashed changes
                               <div class="card-body">
                                 <h5 class="card-title">{{ warehouseItem.product_name }}</h5>
                                 <h5 class="card-title">Code: {{ warehouseItem.product_code }}</h5>
@@ -167,6 +171,7 @@
                   </span>
                     <span class="d-none d-sm-inline-block">Product Variant</span>
                   </template>
+<<<<<<< Updated upstream
                  <div v-show="show">
                    <div class="card-body">
                      <input type="text" v-model="searchVariantTerm" class="form-control" style="width:660px; margin-bottom:10px;" placeholder="Search Product Variant Sku No">
@@ -189,6 +194,30 @@
                      </div>
                    </div>
                  </div>
+=======
+                  <div v-show="show">
+                    <div class="card-body">
+                      <input type="text" v-model="searchVariantTerm" class="form-control" style="width:660px; margin-bottom:10px;" placeholder="Search Product Variant Sku No">
+                      <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="width:135px;" v-for="warehouseItemVariant in filtervariantsearch" :key="warehouseItemVariant.id">
+                          <button class="btn btn-sm" @click.prevent="AddToStockTransferCart(warehouseItemVariant.product_id,warehouseItemVariant.vid)">
+                            <div class="card" style="width:135px; margin-bottom:5px;">
+                              <img :src="'http://192.168.43.131:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ warehouseItemVariant.product_name }}</h5>
+                                <h5 class="card-title">Code: {{ warehouseItemVariant.product_code }}</h5>
+                                <h5 class="card-title">Sku: {{ warehouseItemVariant.sku_no }}</h5>
+                                <h5 class="card-title">Unit: {{ warehouseItemVariant.unit_name }} {{ warehouseItemVariant.unit_symbol }}</h5>
+                                <span v-if="warehouseItemVariant.variant_quantity > '0'" class="badge badge-success">Available: {{ warehouseItemVariant.variant_quantity }}</span>
+                                <span v-else="" class="badge badge-danger">Stock Out</span>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+>>>>>>> Stashed changes
                 </b-tab>
               </b-tabs>
             </div>
@@ -295,6 +324,7 @@ export default {
   },
   methods:{
     stockTransferInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/store/stock-transfer',this.form)
           .then(() => {
             this.$router.push({ name: 'stock-transfer-list'})
@@ -306,21 +336,51 @@ export default {
             this.form.start_transfer_date = "";
             this.form.finish_transfer_date = "";
           })
+=======
+            this.form.routeDuration = this.duration;
+            this.form.routeKm = this.km;
+            this.form.price = this.price;
+            this.form.extra_price = this.extraPrice;
+            this.form.total = this.total;
+            axios.post('http://192.168.43.131:8001/api/store/stock-transfer',this.form)
+                .then(() => {
+                  this.$router.push({ name: 'stock-transfer-list'})
+                  Notification.success()
+                  this.form.from_warehouse_id = "";
+                  this.form.to_warehouse_id = "";
+                  this.form.supplier_id = "";
+                  this.form.notes = "";
+                  this.form.start_transfer_date = "";
+                  this.form.finish_transfer_date = "";
+                })
+>>>>>>> Stashed changes
           .catch(error => this.errors = error.response.data.errors)
     },
     allOutOfStock(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/get-out-of-stock')
+=======
+      axios.get('http://192.168.43.131:8001/api/get-out-of-stock')
+>>>>>>> Stashed changes
           .then(({data}) => (this.outOfStocks = data))
           .catch()
     },
     allStockTransferCart(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/stocktransfer/cart/')
+=======
+      axios.get('http://192.168.43.131:8001/api/stocktransfer/cart/')
+>>>>>>> Stashed changes
           .then(({data}) => (this.stockTransferCarts = data))
           .catch()
     },
     AddToStockTransferCart(id,variant_id = null){
       let warehouse_id = this.form.from_warehouse_id;
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
+=======
+      axios.get('http://192.168.43.131:8001/api/add/stocktransfer/cart/'+id+'/'+variant_id+'/'+warehouse_id)
+>>>>>>> Stashed changes
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -335,12 +395,20 @@ export default {
           .catch()
     },
     selectedWarehouseItemVariant(id){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/select-from-warehouse-item-variant/'+id)
+=======
+      axios.get('http://192.168.43.131:8001/api/select-from-warehouse-item-variant/'+id)
+>>>>>>> Stashed changes
           .then(({data}) => (this.warehouseItemVariants = data))
           .catch()
     },
     removeItem(id){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/remove/stocktransfer/cart/'+id)
+=======
+      axios.get('http://192.168.43.131:8001/api/remove/stocktransfer/cart/'+id)
+>>>>>>> Stashed changes
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -350,7 +418,11 @@ export default {
     },
     increment(id){
       let warehouse_id = this.form.from_warehouse_id;
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
+=======
+      axios.get('http://192.168.43.131:8001/api/increment/stocktransfer/cart/'+id+'/'+warehouse_id)
+>>>>>>> Stashed changes
           .then(({data}) => {
             if (data === 'unsuccessful') {
               // eslint-disable-next-line no-undef
@@ -366,7 +438,11 @@ export default {
           .catch()
     },
     decrement(id){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/decrement/stocktransfer/cart/'+id)
+=======
+      axios.get('http://192.168.43.131:8001/api/decrement/stocktransfer/cart/'+id)
+>>>>>>> Stashed changes
           .then(() => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterAdd');
@@ -375,12 +451,20 @@ export default {
           .catch()
     },
     allSupplier(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/admin/supplier')
+=======
+        axios.get('http://192.168.43.131:8001/api/supplier')
+>>>>>>> Stashed changes
           .then(({data}) => (this.suppliers = data))
           .catch()
     },
     fromWarehouse(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/warehouse')
+=======
+      axios.get('http://192.168.43.131:8001/api/warehouse')
+>>>>>>> Stashed changes
           .then(({data}) => (this.fromWarehouses = data))
           .catch()
     },
@@ -388,10 +472,17 @@ export default {
       let id = event.target.value;
       if (id != null) {
         this.show = true;
+<<<<<<< Updated upstream
         axios.get('http://192.168.1.233:8001/api/select-from-warehouse/'+id)
             .then(({data}) => (this.toWarehouses = data))
             .catch()
         axios.get('http://192.168.1.233:8001/api/from/warehouse/change/'+id)
+=======
+        axios.get('http://192.168.43.131:8001/api/select-from-warehouse/'+id)
+            .then(({data}) => (this.toWarehouses = data))
+            .catch()
+        axios.get('http://192.168.43.131:8001/api/from/warehouse/change/'+id)
+>>>>>>> Stashed changes
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -402,7 +493,11 @@ export default {
 
               if(this.markers.length >1 ){
                 this.markers.splice(0);
+<<<<<<< Updated upstream
                 axios.get('http://192.168.1.233:8001/api/from/warehouse/change/'+id)
+=======
+                axios.get('http://192.168.43.131:8001/api/from/warehouse/change/'+id)
+>>>>>>> Stashed changes
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -413,7 +508,11 @@ export default {
 
                     });
               }else{
+<<<<<<< Updated upstream
                 axios.get('http://192.168.1.233:8001/api/from/warehouse/change/'+id)
+=======
+                axios.get('http://192.168.43.131:8001/api/from/warehouse/change/'+id)
+>>>>>>> Stashed changes
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -436,7 +535,11 @@ export default {
     toWarehouseChange(event){
       let id = event.target.value;
       if (id != null) {
+<<<<<<< Updated upstream
         axios.get('http://192.168.1.233:8001/api/to/warehouse/change/'+id)
+=======
+        axios.get('http://192.168.43.131:8001/api/to/warehouse/change/'+id)
+>>>>>>> Stashed changes
             .then(data => {
               const marker = {
                 lat:parseFloat(data.data[0].warehouse_latitude),
@@ -447,7 +550,11 @@ export default {
               this.distanceCalculate()
               if(this.markers.length >2 ){
                 this.markers.splice(1);
+<<<<<<< Updated upstream
                 axios.get('http://192.168.1.233:8001/api/to/warehouse/change/'+id)
+=======
+                axios.get('http://192.168.43.131:8001/api/to/warehouse/change/'+id)
+>>>>>>> Stashed changes
                     .then(data => {
                       const marker = {
                         lat: parseFloat(data.data[0].warehouse_latitude),
@@ -467,7 +574,11 @@ export default {
     },
     selectedWarehouseItem(id){
       if (id != null) {
+<<<<<<< Updated upstream
         axios.get('http://192.168.1.233:8001/api/select-from-warehouse-item/'+id)
+=======
+        axios.get('http://192.168.43.131:8001/api/select-from-warehouse-item/'+id)
+>>>>>>> Stashed changes
             .then(({data}) => (this.warehouseItems = data))
             .catch()
       } else {
@@ -476,6 +587,7 @@ export default {
 
     },
     allProduct(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/product')
           .then(({data}) => (this.products = data))
           .catch()
@@ -495,6 +607,27 @@ export default {
       let d = R * c;
       this.km = parseFloat(d.toPrecision(6) / 1000);
     },
+=======
+      axios.get('http://192.168.43.131:8001/api/product')
+          .then(({data}) => (this.products = data))
+          .catch()
+    },
+    // subProduct(id){
+    //   axios.get('http://192.168.43.131:8001/api/getting/product/'+id)
+    //       .then(({data}) => (this.getProducts = data))
+    // },
+    // distanceCalculate(){
+    //   let R = 6378137; // Earth’s mean radius in meter
+    //   let dLat = rad(this.markers[1].position.lat - this.markers[0].position.lat);
+    //   let dLong = rad(this.markers[1].position.lng - this.markers[0].position.lng);
+    //   let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //       Math.cos(rad(this.markers[0].position.lat)) * Math.cos(rad(this.markers[1].position.lat)) *
+    //       Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    //   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //   let d = R * c;
+    //   this.km = parseFloat(d.toPrecision(6) / 1000);
+    // },
+>>>>>>> Stashed changes
 
   },
 

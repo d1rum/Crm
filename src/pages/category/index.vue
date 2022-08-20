@@ -221,7 +221,11 @@ export default {
       this.editModalDisplay =false;
     },
     addCategory(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/category',this.form)
+=======
+      this.$http.post('http://192.168.43.131:8001/api/category',this.form)
+>>>>>>> Stashed changes
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getCategoryList();
@@ -231,7 +235,11 @@ export default {
 
     },
     getCategoryList(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/category')
+=======
+      this.$http.get('http://192.168.43.131:8001/api/category')
+>>>>>>> Stashed changes
           .then((res) => {
             this.items = res.data;
           })
@@ -239,7 +247,11 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/category/'+id,this.editForm)
+=======
+      this.$http.patch('http://192.168.43.131:8001/api/category/'+id,this.editForm)
+>>>>>>> Stashed changes
           .then((res) => {
             this.items = res.data;
             this.getCategoryList();
@@ -260,7 +272,11 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
+<<<<<<< Updated upstream
           axios.delete('http://192.168.1.233:8001/api/category/'+id)
+=======
+          this.$http.delete('http://192.168.43.131:8001/api/category/'+id)
+>>>>>>> Stashed changes
               .then(() => {
                 this.getCategoryList();
                 this.categories = this.categories.filter(role => {

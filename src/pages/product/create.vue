@@ -154,6 +154,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/category/')
         .then(({data}) => (this.categories = data))
     axios.get('http://192.168.1.233:8001/api/collection/')
@@ -165,6 +166,19 @@ export default {
     axios.get('http://192.168.1.233:8001/api/warehouse/')
         .then(({data}) => (this.warehouses = data))
     axios.get('http://192.168.1.233:8001/api/product/')
+=======
+    axios.get('http://192.168.43.131:8001/api/category/')
+        .then(({data}) => (this.categories = data))
+    axios.get('http://192.168.43.131:8001/api/collection/')
+        .then(({data}) => (this.collections = data))
+    axios.get('http://192.168.43.131:8001/api/supplier/')
+        .then(({data}) => (this.suppliers = data))
+    axios.get('http://192.168.43.131:8001/api/unit/')
+        .then(({data}) => (this.units = data))
+    axios.get('http://192.168.43.131:8001/api/main-warehouse/')
+        .then(({data}) => (this.mainWarehouse = data))
+    axios.get('http://192.168.43.131:8001/api/product/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.products = data))
 
   },
@@ -223,7 +237,11 @@ export default {
     switchCategorySelect(event){
       let id = event.target.value;
       if (id != null) {
+<<<<<<< Updated upstream
         axios.get('http://192.168.1.233:8001/api/select-to-category/'+id)
+=======
+        axios.get('http://192.168.43.131:8001/api/select-to-category/'+id)
+>>>>>>> Stashed changes
             .then(({data}) => (this.getSubCategories = data))
             .catch()
       } else {
@@ -232,7 +250,11 @@ export default {
 
     },
     productInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/product',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/product',this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-product-list'})
             Notification.success()

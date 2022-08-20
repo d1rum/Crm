@@ -216,7 +216,11 @@ export default {
       this.form.subcategory_name = null;
     },
     getCategoryList() {
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/category/')
+=======
+      this.$http.get('http://192.168.43.131:8001/api/category/')
+>>>>>>> Stashed changes
           .then((res) => {this.categories = res.data
             // eslint-disable-next-line no-console
           })
@@ -240,7 +244,11 @@ export default {
     addSubCategory(){
       // eslint-disable-next-line no-console
 
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/subcategory',this.form)
+=======
+      this.$http.post('http://192.168.43.131:8001/api/subcategory',this.form)
+>>>>>>> Stashed changes
           // eslint-disable-next-line no-console
           .then((res) => {console.log(res)
             this.displayModal = false;
@@ -253,7 +261,11 @@ export default {
     },
     getSubCategoryList(){
 
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/subcategory')
+=======
+      this.$http.get('http://192.168.43.131:8001/api/subcategory')
+>>>>>>> Stashed changes
           .then((res) => {
             this.items = res.data;
 
@@ -262,7 +274,11 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/subcategory/'+id,this.editForm)
+=======
+      this.$http.patch('http://192.168.43.131:8001/api/subcategory/'+id,this.editForm)
+>>>>>>> Stashed changes
           .then((res) => {
             this.items = res.data;
             this.getSubCategoryList();
@@ -283,7 +299,11 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
+<<<<<<< Updated upstream
           axios.delete('http://192.168.1.233:8001/api/subcategory/'+id)
+=======
+          this.$http.delete('http://192.168.43.131:8001/api/subcategory/'+id)
+>>>>>>> Stashed changes
               .then(() => {
                 this.getSubCategoryList();
                 this.categories = this.categories.filter(role => {

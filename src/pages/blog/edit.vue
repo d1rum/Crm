@@ -71,7 +71,11 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/blog/'+id)
+=======
+    axios.get('http://192.168.43.131:8001/api/blog/'+id)
+>>>>>>> Stashed changes
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -109,7 +113,11 @@ export default {
     },
     blogUpdate(){
       let id = this.$route.params.id
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/blog/'+id,this.form)
+=======
+      axios.patch('http://192.168.43.131:8001/api/blog/'+id,this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-blog-list'})
             Notification.success()

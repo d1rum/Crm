@@ -97,7 +97,11 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/admin/'+id)
+=======
+    axios.get('http://192.168.43.131:8001/api/admin/'+id)
+>>>>>>> Stashed changes
         .then(({data}) => {
           // eslint-disable-next-line no-console
           console.log(data)
@@ -107,7 +111,11 @@ export default {
             this.form.password = data.password
         })
         .catch()
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/role/')
+=======
+    axios.get('http://192.168.43.131:8001/api/role/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.roles = data))
   },
 
@@ -151,7 +159,11 @@ export default {
     },
     adminUpdate(){
       let id = this.$route.params.id
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/admin/'+id,this.form)
+=======
+      axios.patch('http://192.168.43.131:8001/api/admin/'+id,this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-list'})
             Notification.success()

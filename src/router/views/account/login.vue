@@ -138,7 +138,11 @@ export default {
   },
   methods:{
     login(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/auth/admin/login',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/auth/admin/login',this.form)
+>>>>>>> Stashed changes
           .then(res => {
             // eslint-disable-next-line no-console
             User.responseAfterLogin(res)

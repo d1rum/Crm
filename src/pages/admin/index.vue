@@ -44,7 +44,11 @@
                     </template>
 
                     <template v-slot:cell(adminImage)="{item}">
+<<<<<<< Updated upstream
                       <img :src="'http://192.168.1.233:8001/'+item.photo" id="admin_photo">
+=======
+                      <img :src="'http://192.168.43.131:8001/'+item.photo" id="admin_photo">
+>>>>>>> Stashed changes
                     </template>
 
                   </b-table>
@@ -150,7 +154,11 @@ export default {
       this.currentPage = 1;
     },
     allAdmin(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/admin')
+=======
+      axios.get('http://192.168.43.131:8001/api/admin')
+>>>>>>> Stashed changes
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -166,7 +174,11 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
+<<<<<<< Updated upstream
           axios.delete('http://192.168.1.233:8001/api/admin/'+id)
+=======
+          axios.delete('http://192.168.43.131:8001/api/admin/'+id)
+>>>>>>> Stashed changes
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

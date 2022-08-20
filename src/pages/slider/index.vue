@@ -55,7 +55,11 @@
                     </template>
 
                     <template v-slot:cell(sliderImage)="{item}">
+<<<<<<< Updated upstream
                       <img :src="'http://192.168.1.233:8001/'+item.slider_image" id="slider_photo">
+=======
+                      <img :src="'http://192.168.43.131:8001/'+item.slider_image" id="slider_photo">
+>>>>>>> Stashed changes
                     </template>
 
                   </b-table>
@@ -159,7 +163,11 @@ export default {
       this.currentPage = 1;
     },
     allSlider(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/slider')
+=======
+      axios.get('http://192.168.43.131:8001/api/slider')
+>>>>>>> Stashed changes
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -175,7 +183,11 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
+<<<<<<< Updated upstream
           axios.delete('http://192.168.1.233:8001/api/slider/'+id)
+=======
+          axios.delete('http://192.168.43.131:8001/api/slider/'+id)
+>>>>>>> Stashed changes
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

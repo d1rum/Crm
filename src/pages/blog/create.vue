@@ -70,7 +70,11 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/blog/')
+=======
+    axios.get('http://192.168.43.131:8001/api/blog/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.blogs = data))
   },
 

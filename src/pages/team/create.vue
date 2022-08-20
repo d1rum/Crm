@@ -125,7 +125,11 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/team/')
+=======
+    axios.get('http://192.168.43.131:8001/api/team/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.teams = data))
   },
 
@@ -172,7 +176,11 @@ export default {
       }
     },
     teamInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/team',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/team',this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-team-list'})
             Notification.success()

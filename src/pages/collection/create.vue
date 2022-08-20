@@ -77,7 +77,11 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/collection/')
+=======
+    axios.get('http://192.168.43.131:8001/api/collection/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.collections = data))
   },
 
@@ -113,7 +117,11 @@ export default {
       }
     },
     collectionInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/collection',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/collection',this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-collection-list'})
             Notification.success()

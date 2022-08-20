@@ -251,7 +251,11 @@ export default {
       this.editModalDisplay =false;
     },
     addColor(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/color',this.form)
+=======
+      this.$http.post('http://192.168.43.131:8001/api/color',this.form)
+>>>>>>> Stashed changes
           // eslint-disable-next-line no-console
           .then((data) => {console.log(data)
             this.editModalDisplay = false;
@@ -262,7 +266,11 @@ export default {
 
     },
     getColorList(){
+<<<<<<< Updated upstream
       axios.get('http://192.168.1.233:8001/api/color')
+=======
+      this.$http.get('http://192.168.43.131:8001/api/color')
+>>>>>>> Stashed changes
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -272,7 +280,11 @@ export default {
     },
     editColor(id){
       // eslint-disable-next-line no-console
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/color/'+id,this.editForm)
+=======
+      this.$http.patch('http://192.168.43.131:8001/api/color/'+id,this.editForm)
+>>>>>>> Stashed changes
           .then((res) => {
             // eslint-disable-next-line no-console
             console.log(res);
@@ -294,7 +306,11 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
+<<<<<<< Updated upstream
           axios.delete('http://192.168.1.233:8001/api/color/'+id)
+=======
+          this.$http.delete('http://192.168.43.131:8001/api/color/'+id)
+>>>>>>> Stashed changes
               .then(() => {
                 this.getColorList();
                 this.categories = this.categories.filter(role => {

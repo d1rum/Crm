@@ -85,7 +85,11 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/customer/'+id)
+=======
+    axios.get('http://192.168.43.131:8001/api/customer/'+id)
+>>>>>>> Stashed changes
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -113,7 +117,11 @@ export default {
   methods:{
     customerUpdate(){
       let id = this.$route.params.id
+<<<<<<< Updated upstream
       axios.patch('http://192.168.1.233:8001/api/customer/'+id,this.form)
+=======
+      axios.patch('http://192.168.43.131:8001/api/customer/'+id,this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-customer-list'})
             Notification.success()

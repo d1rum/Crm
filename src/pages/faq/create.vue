@@ -58,7 +58,11 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
+<<<<<<< Updated upstream
     axios.get('http://192.168.1.233:8001/api/faq/')
+=======
+    axios.get('http://192.168.43.131:8001/api/faq/')
+>>>>>>> Stashed changes
         .then(({data}) => (this.faqs = data))
   },
 
@@ -78,7 +82,11 @@ export default {
 
   methods:{
     faqInsert(){
+<<<<<<< Updated upstream
       axios.post('http://192.168.1.233:8001/api/faq',this.form)
+=======
+      axios.post('http://192.168.43.131:8001/api/faq',this.form)
+>>>>>>> Stashed changes
           .then(() => {
             this.$router.push({ name: 'admin-faq-list'})
             Notification.success()
