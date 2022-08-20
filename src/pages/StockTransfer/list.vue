@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 
 <template>
   <Layout>
@@ -252,122 +251,10 @@ export default {
 
 
     },
-
-
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    },
-
-
-    preparedStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/prepared/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    processStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/process/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    roadStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/road/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    arrivedStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/arrived/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    deliveredStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/delivered/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedRequestStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-request/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedPreparedStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-prepared/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedProcessStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-process/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedRoadStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-road/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedArrivedStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-arrived/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    returnedDeliveredStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/returned-delivered/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
-    },
-    cancelStockTransfer(id){
-      this.$http.get('http://192.168.43.131:8001/api/cancel/stock-transfer/'+id)
-          .then(() => {
-            // eslint-disable-next-line no-undef
-            Reload.$emit('AfterStatus');
-            Notification.success()
-          })
-          .catch()
     },
   },
   // created(){
