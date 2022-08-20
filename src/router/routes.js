@@ -14,6 +14,8 @@ import stocktransfer from "../pages/StockTransfer/stocktransfer";
 import StocktransferList from "@/pages/StockTransfer/list";
 // Stock Transfer Show
 import StocktransferShow from "@/pages/StockTransfer/show";
+// Stock Transfer Invoice
+import StocktransferInvoice from "@/pages/StockTransfer/invoice";
 
 // Slider
 import CreateSlider from "../pages/slider/create";
@@ -187,6 +189,15 @@ const routes = [
         component: StocktransferShow,
         meta: {
             title: ' admin stock transfer show',
+        }
+
+    },
+    {
+        path: '/admin/stock-transfer-invoice/:id',
+        name: 'admin-stock-transfer-invoice',
+        component: StocktransferInvoice,
+        meta: {
+            title: ' admin stock transfer invoice',
         }
 
     },

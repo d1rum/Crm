@@ -59,12 +59,14 @@
                       <b-badge v-if="item.status === 3" class="btn btn-primary">The truck is on the road</b-badge>
                       <b-badge v-if="item.status === 4" class="btn btn-primary">The truck has arrived at the warehouse</b-badge>
                       <b-badge v-if="item.status === 5" class="btn btn-primary">The products have been delivered to the warehouse.</b-badge>
+
                       <b-badge v-if="item.status === 6" class="btn btn-danger">Return request created</b-badge>
                       <b-badge v-if="item.status === 7" class="btn btn-success">Preparing products to be returned</b-badge>
                       <b-badge v-if="item.status === 8" class="btn btn-primary">Reloading products to the truck</b-badge>
                       <b-badge v-if="item.status === 9" class="btn btn-danger">The truck of the products to be returned is on the way</b-badge>
                       <b-badge v-if="item.status === 10" class="btn btn-danger">The truck of the products to be returned has arrived at the warehouse</b-badge>
                       <b-badge v-if="item.status === 11" class="btn btn-danger">Return process successful</b-badge>
+
                       <b-badge v-if="item.status === 12" class="btn btn-primary">Stock Transfer Canceled</b-badge>
                     </template>
 
@@ -102,7 +104,8 @@
                       <a v-if="item.status === 9" @click="returnedArrivedStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Arrived</a>
                       <a v-if="item.status === 10" @click="returnedDeliveredStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Delivered</a>
                       <a v-if="item.status === 0 && item.status === 1 && item.status === 2" @click="returnedDeliveredStockTransfer(item.id)" style="color: white;" class="btn btn-sm btn-danger">Return Delivered</a>
-                      <router-link :to="{ name: 'admin-stock-transfer-show',params:{id:item.id}}" class="btn btn-sm btn-dark">Show</router-link>
+                      <router-link :to="{ name: 'admin-stock-transfer-show',params:{id:item.id}}" class="btn btn-sm btn-primary">Show</router-link>
+                      <router-link :to="{ name: 'admin-stock-transfer-invoice',params:{id:item.id}}" class="btn btn-sm btn-success">Invoice</router-link>
 
                     </template>
 

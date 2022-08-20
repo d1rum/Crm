@@ -32,13 +32,13 @@
                   <li><strong style="color: black;">Warehouse City: </strong>{{ StockTransfer.stockTransfer.fromWarehouse_city }}</li>
                   <li><strong style="color: black;">Warehouse Post Code: </strong>{{ StockTransfer.stockTransfer.fromWarehouse_postcode }}</li>
                   <li><strong style="color: black;">Warehouse Address: </strong>{{ StockTransfer.stockTransfer.fromWarehouse_address }}</li>
-                  <li v-if="StockTransfer.stockTransfer.fromWarehouse_type == '1'">
+                  <li v-if="StockTransfer.stockTransfer.fromWarehouse_type === '1'">
                     <strong style="color: black;">Warehouse Type: </strong>Main Warehouse
                   </li>
                   <li v-else="">
                     <strong style="color: black;">Warehouse Type: </strong>Sub Warehouse
                   </li>
-                  <li v-if="StockTransfer.stockTransfer.fromWarehouse_status == '1'">
+                  <li v-if="StockTransfer.stockTransfer.fromWarehouse_status === '1'">
                     <span class="badge badge-success">Active</span>
                   </li>
                   <li v-else="">
@@ -108,6 +108,7 @@
             <div class="pricing-content-card">
               <h5>Stock Transfer Detail</h5>
               <ul class="py-2">
+                <li><strong style="color: black;">Code: </strong>{{ StockTransfer.stockTransfer.code }}</li>
                 <li><strong style="color: black;">Start Transfer Date: </strong>{{ StockTransfer.stockTransfer.start_transfer_date }}</li>
                 <li><strong style="color: black;">Finish Transfer Date: </strong>{{ StockTransfer.stockTransfer.finish_transfer_date }}</li>
                 <li><strong style="color: black;">Total Product: </strong>{{ StockTransfer.stockTransfer.total_product }}</li>
@@ -291,14 +292,14 @@ export default {
     let id = this.$route.params.id
     this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/'+id)
         .then(({data}) => (this.StockTransfer = data))
-        .catch(console.log('error'))
+        .catch()
     this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/product/'+id)
         .then(({data}) => (this.StockTransferProducts = data))
-        .catch(console.log('error'))
+        .catch()
     this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/product/variant/'+id)
         .then(({data}) => {this.StockTransferVariants = data
           console.log(data)})
-        .catch(console.log('error'))
+        .catch()
 
   },
   data(){
@@ -388,6 +389,8 @@ export default {
   width: 40px;
 }
 #variant_photo{
-  height: 40px;}
+  width: 40px;
+  height: 40px;
+}
 
 </style>

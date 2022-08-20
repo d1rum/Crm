@@ -10,14 +10,14 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    this.allUserNotification();
-    this.allUserNotification();
+    // this.allUserNotification();
+    // this.allUserNotification();
     // this.timerNotification = setInterval(this.allUserNotification, 60000);
     // this.timerNotificationCount = setInterval(this.allUserNotification, 60000);
     // eslint-disable-next-line no-undef
     Reload.$on('AfterStatus',() => {
-      this.allUserNotification()
-      this.allUserNotificationCount()
+      // this.allUserNotification()
+      // this.allUserNotificationCount()
     })
   },
   data() {
