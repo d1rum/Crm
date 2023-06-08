@@ -48,7 +48,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="warehouseItem in filtersearch" :key="warehouseItem.id">
                           <button class="btn btn-sm" @click.prevent="deleteWarehouseItem(warehouseItem.id)">
                             <div class="card" style="width:135px; margin-bottom:5px;">
-                              <img :src="'http://192.168.1.37:8001/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
+                              <img :src="'/'+warehouseItem.product_image" id="product_photo" :alt="warehouseItem.product_name" class="card-img-top">
                               <div class="card-body">
                                 <h5 class="card-title">{{ warehouseItem.product_name }}</h5>
                                 <h5 class="card-title">Code: {{ warehouseItem.product_code }}</h5>
@@ -78,7 +78,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="warehouseItemVariant in filtervariantsearch" :key="warehouseItemVariant.id">
                           <button class="btn btn-sm" @click.prevent="deleteWarehouseItemVariant(warehouseItemVariant.id)">
                             <div class="card" style="width:135px; margin-bottom:5px;">
-                              <img :src="'http://192.168.1.37:8001/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
+                              <img :src="'/'+warehouseItemVariant.variant_image" id="variant_photo" :alt="warehouseItemVariant.product_name" class="card-img-top">
                               <div class="card-body">
                                 <h5 class="card-title">{{ warehouseItemVariant.product_name }}</h5>
                                 <h5 class="card-title">Code: {{ warehouseItemVariant.product_code }}</h5>
@@ -149,7 +149,7 @@ export default {
   },
   methods:{
     subWarehouses(){
-      axios.get('http://192.168.1.37:8001/api/sub-warehouse/list')
+      axios.get('sub-warehouse/list')
           .then(({data}) => (this.warehouses = data))
           .catch()
     },
@@ -167,7 +167,7 @@ export default {
     selectedWarehouseItem(id){
       if (id != "") {
         this.show = true;
-        axios.get('http://192.168.1.37:8001/api/select-warehouse-item/'+id)
+        axios.get('select-warehouse-item/'+id)
             .then(({data}) => (this.warehouseItems = data))
             .catch()
       } else {
@@ -179,7 +179,7 @@ export default {
     selectedWarehouseItemVariant(id){
       if (id != "") {
         this.show = true;
-        axios.get('http://192.168.1.37:8001/api/select-warehouse-item-variant/'+id)
+        axios.get('select-warehouse-item-variant/'+id)
             .then(({data}) => (this.warehouseItemVariants = data))
             .catch()
       } else {
@@ -200,7 +200,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.get('http://192.168.1.37:8001/api/warehouse-item/delete/'+id)
+          axios.get('warehouse-item/delete/'+id)
               .then(() => {
                 this.warehouseItems = this.warehouseItems.filter(warehouseItem => {
                   return warehouseItem.id !== id
@@ -231,7 +231,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.get('http://192.168.1.37:8001/api/warehouse-item-variant/delete/'+id)
+          axios.get('warehouse-item-variant/delete/'+id)
               .then(() => {
                 this.warehouseItemVariants = this.warehouseItemVariants.filter(warehouseItemVariant => {
                   return warehouseItemVariant.id !== id

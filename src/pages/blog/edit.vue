@@ -71,7 +71,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/blog/'+id)
+    axios.get('blog/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -109,7 +109,7 @@ export default {
     },
     blogUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.37:8001/api/blog/'+id,this.form)
+      axios.patch('blog/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-blog-list'})
             Notification.success()

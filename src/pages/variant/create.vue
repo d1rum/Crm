@@ -78,13 +78,13 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/product/')
+    axios.get('product/')
         .then(({data}) => (this.products = data))
-    axios.get('http://192.168.1.37:8001/api/size/')
+    axios.get('size/')
         .then(({data}) => (this.sizes = data))
-    axios.get('http://192.168.1.37:8001/api/color/')
+    axios.get('color/')
         .then(({data}) => (this.colors = data))
-    axios.get('http://192.168.1.37:8001/api/variant/')
+    axios.get('variant/')
         .then(({data}) => (this.variants = data))
 
   },
@@ -123,7 +123,7 @@ export default {
       }
     },
     variantInsert(){
-      axios.post('http://192.168.1.37:8001/api/variant',this.form)
+      axios.post('variant',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-variant-list'})
             Notification.success()

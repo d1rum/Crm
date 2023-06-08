@@ -221,7 +221,7 @@ export default {
       this.editModalDisplay =false;
     },
     addCategory(){
-      this.$http.post('http://192.168.1.37:8001/api/category',this.form)
+      this.$http.post('category',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getCategoryList();
@@ -232,7 +232,7 @@ export default {
 
     },
     getCategoryList(){
-      this.$http.get('http://192.168.1.37:8001/api/category')
+      this.$http.get('category')
           .then((res) => {
             this.items = res.data;
           })
@@ -240,7 +240,7 @@ export default {
     },
     editCategory(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/category/'+id,this.editForm)
+      this.$http.patch('category/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getCategoryList();
@@ -261,7 +261,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/category/'+id)
+          this.$http.delete('category/'+id)
               .then(() => {
                 this.getCategoryList();
                 this.categories = this.categories.filter(role => {

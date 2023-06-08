@@ -215,13 +215,13 @@ export default {
       this.$router.push({name: '/admin/login'})
     }
     let id = this.$route.params.id
-    this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/'+id)
+    this.$http.get('stockTransfer/show/'+id)
         .then(({data}) => (this.StockTransfer = data))
         .catch()
-    this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/product/'+id)
+    this.$http.get('stockTransfer/show/product/'+id)
         .then(({data}) => (this.StockTransferProducts = data))
         .catch()
-    this.$http.get('http://192.168.1.37:8001/api/stockTransfer/show/product/variant/'+id)
+    this.$http.get('stockTransfer/show/product/variant/'+id)
         .then(({data}) => {this.StockTransferVariants = data
           console.log(data)})
         .catch()

@@ -55,7 +55,7 @@
                     </template>
 
                     <template v-slot:cell(sliderImage)="{item}">
-                      <img :src="'http://192.168.1.37:8001/'+item.slider_image" id="slider_photo">
+                      <img :src="'/'+item.slider_image" id="slider_photo">
                     </template>
 
                   </b-table>
@@ -159,7 +159,7 @@ export default {
       this.currentPage = 1;
     },
     allSlider(){
-      axios.get('http://192.168.1.37:8001/api/slider')
+      axios.get('slider')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -175,7 +175,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.37:8001/api/slider/'+id)
+          axios.delete('slider/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

@@ -96,9 +96,9 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/warehouse/')
+    axios.get('warehouse/')
         .then(({data}) => (this.warehouses = data))
-    axios.get('http://192.168.1.37:8001/api/control-main-warehouse/')
+    axios.get('control-main-warehouse/')
         .then(({data}) => (this.controlMainWarehouse = data))
 
   },
@@ -127,7 +127,7 @@ export default {
 
   methods:{
     warehouseInsert(){
-      axios.post('http://192.168.1.37:8001/api/warehouse',this.form)
+      axios.post('warehouse',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-warehouse-list'})
             Notification.success()

@@ -247,7 +247,7 @@ export default {
       this.editModalDisplay =false;
     },
     addUnit(){
-      this.$http.post('http://192.168.1.37:8001/api/unit',this.form)
+      this.$http.post('unit',this.form)
           .then((data) => {
             // eslint-disable-next-line no-console
             console.log(data)
@@ -259,7 +259,7 @@ export default {
 
     },
     getUnitList(){
-      this.$http.get('http://192.168.1.37:8001/api/unit')
+      this.$http.get('unit')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -269,7 +269,7 @@ export default {
     },
     editUnit(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/unit/'+id,this.editForm)
+      this.$http.patch('unit/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getUnitList();
@@ -290,7 +290,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/unit/'+id)
+          this.$http.delete('unit/'+id)
               .then(() => {
                 this.getUnitList();
                 this.categories = this.categories.filter(role => {

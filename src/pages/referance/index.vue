@@ -55,7 +55,7 @@
                     </template>
 
                     <template v-slot:cell(referanceImage)="{item}">
-                      <img :src="'http://192.168.1.37:8001/'+item.referance_image" id="referance_photo">
+                      <img :src="'/'+item.referance_image" id="referance_photo">
                     </template>
 
                   </b-table>
@@ -159,7 +159,7 @@ export default {
       this.currentPage = 1;
     },
     allReferance(){
-      axios.get('http://192.168.1.37:8001/api/referance')
+      axios.get('referance')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -175,7 +175,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.37:8001/api/referance/'+id)
+          axios.delete('referance/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

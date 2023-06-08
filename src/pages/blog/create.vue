@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/blog/')
+    axios.get('blog/')
         .then(({data}) => (this.blogs = data))
   },
 
@@ -105,7 +105,7 @@ export default {
       }
     },
     blogInsert(){
-      axios.post('http://192.168.1.100:8001/api/admin/blog',this.form)
+      axios.post('admin/blog',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-blog-list'})
             Notification.success()

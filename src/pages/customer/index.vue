@@ -146,7 +146,7 @@ export default {
       this.currentPage = 1;
     },
     allCustomer(){
-      axios.get('http://192.168.1.37:8001/api/customer')
+      axios.get('customer')
           .then(({data}) => (this.items = data))
           .catch()
     },
@@ -162,7 +162,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.delete('http://192.168.1.37:8001/api/customer/'+id)
+          axios.delete('customer/'+id)
               .then(() => {
                 this.items = this.items.filter(item => {
                   return item.id !== id

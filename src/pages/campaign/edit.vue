@@ -80,7 +80,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/campaign/'+id)
+    axios.get('campaign/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -120,7 +120,7 @@ export default {
     },
     campaignUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.37:8001/api/campaign/'+id,this.form)
+      axios.patch('campaign/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-campaign-list'})
             Notification.success()

@@ -97,10 +97,10 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/warehouse/'+id)
+    axios.get('warehouse/'+id)
         .then(({data}) => (this.form = data))
         .catch()
-    axios.get('http://192.168.1.37:8001/api/control-main-warehouse/')
+    axios.get('control-main-warehouse/')
         .then(({data}) => (this.controlMainWarehouse = data))
 
   },
@@ -129,7 +129,7 @@ export default {
   methods:{
     warehouseUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.37:8001/api/warehouse/'+id,this.form)
+      axios.patch('warehouse/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-warehouse-list'})
             Notification.success()

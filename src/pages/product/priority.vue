@@ -69,7 +69,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/get-product-priority/'+id)
+    axios.get('get-product-priority/'+id)
         .then(({data}) => (this.form = data))
         .catch()
 
@@ -91,7 +91,7 @@ export default {
   methods:{
     priorityProduct(){
       let id = this.$route.params.id
-      axios.post('http://192.168.1.37:8001/api/product-priority/'+id,this.form)
+      axios.post('product-priority/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-product-list'})
             Notification.success()

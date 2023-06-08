@@ -236,7 +236,7 @@ export default {
   },
   methods:{
     statusChange(item,data=null){
-      this.$http.post('http://192.168.1.37:8001/api/status/'+item.id+'/change/'+item.status,{item:data})
+      this.$http.post('status/'+item.id+'/change/'+item.status,{item:data})
           .then(({data}) => {
             // eslint-disable-next-line no-undef
             Reload.$emit('AfterStatus');
@@ -245,7 +245,7 @@ export default {
             console.log(data);}).catch()
     },
     getStockTransferList(){
-      this.$http.get('http://192.168.1.37:8001/api/stockTransfer/')
+      this.$http.get('stockTransfer/')
           .then(({data}) => {this.items = data;
             // eslint-disable-next-line no-console
             console.log(data);}).catch()

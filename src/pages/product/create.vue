@@ -153,17 +153,17 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/category/')
+    axios.get('category/')
         .then(({data}) => (this.categories = data))
-    axios.get('http://192.168.1.37:8001/api/collection/')
+    axios.get('collection/')
         .then(({data}) => (this.collections = data))
-    axios.get('http://192.168.1.37:8001/api/supplier/')
+    axios.get('supplier/')
         .then(({data}) => (this.suppliers = data))
-    axios.get('http://192.168.1.37:8001/api/unit/')
+    axios.get('unit/')
         .then(({data}) => (this.units = data))
-    axios.get('http://192.168.1.37:8001/api/main-warehouse/')
+    axios.get('main-warehouse/')
         .then(({data}) => (this.mainWarehouse = data))
-    axios.get('http://192.168.1.37:8001/api/product/')
+    axios.get('product/')
         .then(({data}) => (this.products = data))
 
   },
@@ -222,7 +222,7 @@ export default {
     switchCategorySelect(event){
       let id = event.target.value;
       if (id != null) {
-        axios.get('http://192.168.1.37:8001/api/select-to-category/'+id)
+        axios.get('select-to-category/'+id)
             .then(({data}) => (this.getSubCategories = data))
             .catch()
       } else {
@@ -231,7 +231,7 @@ export default {
 
     },
     productInsert(){
-      axios.post('http://192.168.1.37:8001/api/product',this.form)
+      axios.post('product',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-product-list'})
             Notification.success()

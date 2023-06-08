@@ -70,7 +70,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/slider/')
+    axios.get('slider/')
         .then(({data}) => (this.sliders = data))
   },
 
@@ -105,7 +105,7 @@ export default {
       }
     },
     sliderInsert(){
-      axios.post('http://192.168.1.100:8001/api/admin/slider',this.form)
+      axios.post('admin/slider',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-slider-list'})
             Notification.success()

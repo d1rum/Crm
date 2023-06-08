@@ -84,7 +84,7 @@ export default {
         a = a+1;
         if (a === 101){
           clearInterval(run);
-          axios.get('http://192.168.1.37:8001/api/backup')
+          axios.get('backup')
               .then((res) => {
                 if (res.data === true){
                   // eslint-disable-next-line no-undef
@@ -113,7 +113,7 @@ export default {
   },
   methods:{
     // backup(){
-    //   axios.get('http://192.168.1.37:8001/api/backup')
+    //   axios.get('backup')
     //       .then((res) => {
     //         if (res.data === true){
     //           // eslint-disable-next-line no-undef

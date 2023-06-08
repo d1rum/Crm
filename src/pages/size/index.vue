@@ -225,7 +225,7 @@ export default {
       this.editModalDisplay =false;
     },
     addSize(){
-      this.$http.post('http://192.168.1.37:8001/api/size',this.form)
+      this.$http.post('size',this.form)
           .then((data) => {
             // eslint-disable-next-line no-console
             console.log(data)
@@ -237,7 +237,7 @@ export default {
 
     },
     getSizeList(){
-      this.$http.get('http://192.168.1.37:8001/api/size')
+      this.$http.get('size')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -247,7 +247,7 @@ export default {
     },
     editSize(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/size/'+id,this.editForm)
+      this.$http.patch('size/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getSizeList();
@@ -268,7 +268,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/size/'+id)
+          this.$http.delete('size/'+id)
               .then(() => {
                 this.getSizeList();
                 this.categories = this.categories.filter(role => {

@@ -272,13 +272,13 @@ export default {
   methods:{
     imageResize(){
       let id = 0
-      axios.get('http://192.168.1.37:8001/api/image-resize/'+id)
+      axios.get('image-resize/'+id)
           .then(({data}) => (this.form = data))
           .catch()
     },
     imageResizeUpdate(){
       // let id = this.$route.params.id
-      axios.post('http://192.168.1.37:8001/api/image-resize/',this.form)
+      axios.post('image-resize/',this.form)
           .then(() => {
             this.$router.push({ name: 'admin'})
             // eslint-disable-next-line no-undef

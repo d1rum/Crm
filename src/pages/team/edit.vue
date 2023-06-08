@@ -126,7 +126,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/team/'+id)
+    axios.get('team/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -176,7 +176,7 @@ export default {
     },
     teamUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.37:8001/api/team/'+id,this.form)
+      axios.patch('team/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-team-list'})
             Notification.success()

@@ -76,7 +76,7 @@ export default {
     if(!User.loggedIn()){
       this.$router.push({name: 'admin-login'})
     }
-    axios.get('http://192.168.1.37:8001/api/supplier/')
+    axios.get('supplier/')
         .then(({data}) => (this.suppliers = data))
   },
 
@@ -100,7 +100,7 @@ export default {
 
   methods:{
     supplierInsert(){
-      axios.post('http://192.168.1.37:8001/api/supplier',this.form)
+      axios.post('supplier',this.form)
           .then(() => {
             this.$router.push({ name: 'admin-supplier-list'})
             Notification.success()

@@ -21,7 +21,7 @@
               ></b-form-file>
             </div>
             <div class="form-group col-md-2 mt-2" v-if="editForm.shipping_company_image != null">
-              <img width="100px" height="100px"  :hidden="hideStatus" :src="'http://192.168.1.37:8001'+'/'+editForm.shipping_company_image" id="shipping_company_image">
+              <img width="100px" height="100px"  :hidden="hideStatus" :src="''+'/'+editForm.shipping_company_image" id="shipping_company_image">
             </div>
             <br>
             <div class="form-group col-md-2 mt-2" v-if="editForm.new_shipping_company_image != null">
@@ -130,7 +130,7 @@
                       </div>
                     </template>
                     <template v-slot:cell(shipping_company_image)="{item}">
-                      <img id="product_image" :src="'http://192.168.1.37:8001'+'/'+item.shipping_company_image">
+                      <img id="product_image" :src="''+'/'+item.shipping_company_image">
                     </template>
 
                     <template v-slot:cell(actions)="{item}">
@@ -332,7 +332,7 @@ export default {
       this.editModalDisplay =false;
     },
     addShipCompany(){
-      this.$http.post('http://192.168.1.37:8001/api/shipping-company',this.form)
+      this.$http.post('shipping-company',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getShipComList();
@@ -343,7 +343,7 @@ export default {
 
     },
     getShipComList(){
-      this.$http.get('http://192.168.1.37:8001/api/shipping-company')
+      this.$http.get('shipping-company')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -353,7 +353,7 @@ export default {
     },
     editShipComp(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/shipping-company/'+id,this.editForm)
+      this.$http.patch('shipping-company/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getShipComList();
@@ -375,7 +375,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/shipping-company/'+id)
+          this.$http.delete('shipping-company/'+id)
               .then(() => {
                 this.getShipComList();
                 this.categories = this.categories.filter(role => {

@@ -85,7 +85,7 @@ export default {
       this.$router.push({name: 'admin-login'})
     }
     let id = this.$route.params.id
-    axios.get('http://192.168.1.37:8001/api/customer/'+id)
+    axios.get('customer/'+id)
         .then(({data}) => (this.form = data))
         .catch()
   },
@@ -113,7 +113,7 @@ export default {
   methods:{
     customerUpdate(){
       let id = this.$route.params.id
-      axios.patch('http://192.168.1.37:8001/api/customer/'+id,this.form)
+      axios.patch('customer/'+id,this.form)
           .then(() => {
             this.$router.push({ name: 'admin-customer-list'})
             Notification.success()

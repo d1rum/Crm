@@ -114,7 +114,7 @@
                       </div>
                     </template>
                     <template v-slot:cell(shipping_company_image)="{item}">
-                      <img id="product_image" :src="'http://192.168.1.37:8001'+'/'+item.shipping_company_image">
+                      <img id="product_image" :src="''+'/'+item.shipping_company_image">
                     </template>
 
                     <template v-slot:cell(actions)="{item}">
@@ -263,7 +263,7 @@ export default {
       this.form.shipping_company_id = null;
     },
     getShippingCompaniesList(){
-      this.$http.get('http://192.168.1.37:8001/api/shipping-company/')
+      this.$http.get('shipping-company/')
           .then(({data}) => {this.shippingCompanies = data;
             // eslint-disable-next-line no-console
             console.log(data);}).catch()
@@ -293,7 +293,7 @@ export default {
       this.editModalDisplay =false;
     },
     addServiceType(){
-      this.$http.post('http://192.168.1.37:8001/api/shipping-company-service',this.form)
+      this.$http.post('shipping-company-service',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getShipServiceList();
@@ -303,7 +303,7 @@ export default {
 
     },
     getShipServiceList(){
-      this.$http.get('http://192.168.1.37:8001/api/shipping-company-service')
+      this.$http.get('shipping-company-service')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -314,7 +314,7 @@ export default {
     },
     editService(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/shipping-company-service/'+id,this.editForm)
+      this.$http.patch('shipping-company-service/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getShipServiceList();
@@ -335,7 +335,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/shipping-company-service/'+id)
+          this.$http.delete('shipping-company-service/'+id)
               .then(() => {
                 this.getShipServiceList();
                 this.categories = this.categories.filter(role => {

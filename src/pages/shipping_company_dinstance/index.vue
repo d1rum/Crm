@@ -96,7 +96,7 @@
 
                   >
                     <template v-slot:cell(shipping_company_image)="{item}">
-                      <img id="product_image" :src="'http://192.168.1.37:8001'+'/'+item.shipping_company_image">
+                      <img id="product_image" :src="''+'/'+item.shipping_company_image">
                     </template>
 
                     <template v-slot:cell(actions)="{item}">
@@ -230,7 +230,7 @@ export default {
       this.form.shipping_company_id = null;
     },
     getShippingCompaniesList(){
-      this.$http.get('http://192.168.1.37:8001/api/shipping-company/')
+      this.$http.get('shipping-company/')
           .then(({data}) => {this.shippingCompanies = data;
             // eslint-disable-next-line no-console
             console.log(data);}).catch()
@@ -271,7 +271,7 @@ export default {
       this.editModalDisplay =false;
     },
     addDistance(){
-      this.$http.post('http://192.168.1.37:8001/api/shipping-company-distance',this.form)
+      this.$http.post('shipping-company-distance',this.form)
           .then((data) => {this.categories = data;
             this.editModalDisplay = false;
             this.getDistanceList();
@@ -281,7 +281,7 @@ export default {
 
     },
     getDistanceList(){
-      this.$http.get('http://192.168.1.37:8001/api/shipping-company-distance')
+      this.$http.get('shipping-company-distance')
           .then((res) => {
             this.items = res.data;
             // eslint-disable-next-line no-console
@@ -292,7 +292,7 @@ export default {
     },
     editDistance(id){
       // eslint-disable-next-line no-console
-      this.$http.patch('http://192.168.1.37:8001/api/shipping-company-distance/'+id,this.editForm)
+      this.$http.patch('shipping-company-distance/'+id,this.editForm)
           .then((res) => {
             this.items = res.data;
             this.getDistanceList();
@@ -313,7 +313,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$http.delete('http://192.168.1.37:8001/api/shipping-company-distance/'+id)
+          this.$http.delete('shipping-company-distance/'+id)
               .then(() => {
                 this.getDistanceList();
                 this.categories = this.categories.filter(role => {
